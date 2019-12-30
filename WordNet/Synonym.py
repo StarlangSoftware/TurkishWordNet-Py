@@ -3,13 +3,13 @@ from WordNet.Literal import Literal
 
 class Synonym:
 
-    __literals: list = []
+    __literals: list
 
     """
     A constructor that creates a new list of literals.
     """
     def __init__(self):
-        pass
+        self.__literals = []
 
     """
     Appends the specified Literal to the end of literals list.

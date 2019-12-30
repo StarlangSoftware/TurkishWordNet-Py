@@ -4,7 +4,7 @@ from WordNet.SemanticRelationType import SemanticRelationType
 
 class SemanticRelation(Relation):
     __relationType: SemanticRelationType
-    __toIndex: int = 0
+    __toIndex: int
 
     semanticDependency = ["ANTONYM", "HYPERNYM", "INSTANCE_HYPERNYM", "HYPONYM", "INSTANCE_HYPONYM", "MEMBER_HOLONYM",
                           "SUBSTANCE_HOLONYM", "PART_HOLONYM", "MEMBER_MERONYM", "SUBSTANCE_MERONYM", "PART_MERONYM",
@@ -109,10 +109,12 @@ class SemanticRelation(Relation):
     toIndex : int     
         index of the relation
     """
-    def SemanticRelation(self, name: str, relationType, toIndex=None):
+    def __init__(self, name: str, relationType, toIndex=None):
         super().__init__(name)
         if toIndex is not None:
             self.__toIndex = toIndex
+        else:
+            self.__toIndex = 0
         if isinstance(relationType, str):
             self.__relationType = SemanticRelation.getSemanticTag(relationType)
         elif isinstance(relationType, SemanticRelationType):

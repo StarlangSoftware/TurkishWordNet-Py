@@ -1,6 +1,6 @@
 class IdMapping:
 
-    __map: dict = {}
+    __map: dict
 
     """
     Constructor to load ID mappings from given file to a map.
@@ -11,6 +11,7 @@ class IdMapping:
         String file name input that will be read
     """
     def __init__(self, fileName=None):
+        self.__map = {}
         if fileName is not None:
             infile = open(fileName, "r")
             lines = infile.readlines()

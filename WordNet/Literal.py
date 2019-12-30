@@ -9,7 +9,7 @@ class Literal:
     name: str
     sense: int
     synSetId: str
-    origin: str = None
+    origin: str
     relations: list
 
     """
