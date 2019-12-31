@@ -716,6 +716,96 @@ class WordNet:
         else:
             return []
 
+    def containsSameLiteral(self, synSet1: SynSet, synSet2: SynSet) -> bool:
+        for i in range(synSet1.getSynonym().literalSize()):
+            literal1 = synSet1.getSynonym().getLiteral(i)
+            for j in range(i + 1, synSet2.getSynonym().literalSize()):
+                literal2 = synSet2.getSynonym().getLiteral(j)
+                if literal1.getName() == literal2.getName() and synSet1.getPos() is not None:
+                    return True
+        return False
+
+    """
+    Prints the SynSets without part of speech tags.
+    """
+    def noPosCheck(self):
+        for synSet in self.synSetList():
+            if synSet.getPos() is None:
+                print(synSet.getId() + "\t" + synSet.getSynonym().getLiteral(0).getName() + "\t" +
+                      synSet.getDefinition() + "\t" + "has no part of speech")
+
+    """
+    Prints the SynSets without definitions.
+    """
+    def noDefinitionCheck(self):
+        for synSet in self.synSetList():
+            if synSet.getDefinition() is None:
+                print("SynSet " + synSet.getId() + " has no definition " + synSet.getSynonym().__str__())
+
+    """
+    Print the literals with same senses.
+    """
+    def sameLiteralSameSenseCheck(self):
+        for name in self.__literalList.keys():
+            literals = self.__literalList[name]
+            for i in range(len(literals)):
+                for j in range(i + 1, len(literals)):
+                    if literals[i].getSense() == literals[j].getSense():
+                        print("Literal " + name + " has same senses.")
+
+    """
+    Prints the literals with same SynSets.
+    """
+    def sameLiteralSameSynSetCheck(self):
+        for synSet in self.synSetList():
+            if self.containsSameLiteral(synSet, synSet):
+                print(synSet.getPos().__str__() + "->" + synSet.getSynonym().__str__() + "->" + synSet.getDefinition())
+
+    """
+    Prints SynSets without relation IDs.
+    """
+    def semanticRelationNoIDCheck(self):
+        for synSet in self.synSetList():
+            j = 0
+            while j < synSet.relationSize():
+                relation = synSet.getRelation(j)
+                if isinstance(relation, SemanticRelation) and self.getSynSetWithId(relation.getName()) is None:
+                    synSet.removeRelation(relation)
+                    j = j - 1
+                    print("Relation " + relation.getName() + " of Synset " + synSet.getId() + " does not exists "
+                          + synSet.getSynonym().__str__())
+                j = j + 1
+
+    """
+    Prints SynSets with same relations.
+    """
+    def sameSemanticRelationCheck(self):
+        for synSet in self.synSetList():
+            j = 0
+            while j < synSet.relationSize():
+                relation = synSet.getRelation(j)
+                same = None
+                for k in range(j + 1, synSet.relationSize()):
+                    if relation.getName() == synSet.getRelation(k).getName():
+                        print(relation.getName() + "--" + synSet.getRelation(k).getName()
+                              + " are same relation for synset " + synSet.getId())
+                        same = synSet.getRelation(k)
+                if same is not None:
+                    synSet.removeRelation(same)
+                else:
+                    j = j + 1
+
+    """
+    Performs check processes.
+    """
+    def check(self):
+        self.noPosCheck()
+        self.noDefinitionCheck()
+        self.sameSemanticRelationCheck()
+        self.semanticRelationNoIDCheck()
+        self.sameLiteralSameSynSetCheck()
+        self.sameLiteralSameSenseCheck()
+
     """
     Method to write SynSets to the specified file in the XML format.
 

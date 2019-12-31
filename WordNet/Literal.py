@@ -29,6 +29,7 @@ class Literal:
         self.sense = sense
         self.synSetId = synSetId
         self.relations = []
+        self.origin = None
 
     """
     Overridden equals method returns true if the specified object literal equals to the current literal's name.

@@ -34,6 +34,8 @@ class SynSet:
         self.__synonym = Synonym()
         self.__relations = []
         self.__definition = []
+        self.__pos = None
+        self.__example = None
 
     """
     An overridden equals method to compare two SynSets.
