@@ -816,7 +816,7 @@ class WordNet:
     """
 
     def saveAsXml(self, fileName: str):
-        outFile = open(fileName, "w")
+        outFile = open(fileName, "w", encoding="utf8")
         outFile.write("<SYNSETS>\n")
         for synSet in self.__synSetList.values():
             synSet.saveAsXml(outFile)

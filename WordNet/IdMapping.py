@@ -13,7 +13,7 @@ class IdMapping:
     def __init__(self, fileName=None):
         self.__map = {}
         if fileName is not None:
-            infile = open(fileName, "r")
+            infile = open(fileName, "r", encoding="utf8")
             lines = infile.readlines()
             for line in lines:
                 items = line.split("->")
@@ -100,7 +100,7 @@ class IdMapping:
         String file to write map
     """
     def save(self, fileName: str):
-        outfile = open(fileName, "w")
+        outfile = open(fileName, "w", encoding="utf8")
         for key in self.__map:
             outfile.write(key + "->" + self.__map[key] + "\n")
         outfile.close()
