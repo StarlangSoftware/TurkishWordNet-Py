@@ -2,8 +2,6 @@ from enum import Enum, auto
 
 
 class InterlingualDependencyType(Enum):
-    
-    
     HYPERNYM = auto()
     NEAR_ANTONYM = auto()
     HOLO_MEMBER = auto()

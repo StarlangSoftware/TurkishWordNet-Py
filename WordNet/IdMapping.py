@@ -43,10 +43,10 @@ class IdMapping:
     str
         Value of the specified key
     """
-    def map(self, id: str) -> str:
-        if id not in self.__map:
+    def map(self, _id: str) -> str:
+        if _id not in self.__map:
             return None
-        mappedId = self.__map[id]
+        mappedId = self.__map[_id]
         while mappedId in self.__map:
             mappedId = self.__map[mappedId]
         return mappedId
@@ -64,8 +64,8 @@ class IdMapping:
     str
         Value of the specified key
     """
-    def singleMap(self, id: str) -> str:
-        return self.__map[id]
+    def singleMap(self, _id: str) -> str:
+        return self.__map[_id]
 
     """
     Associates the specified value with the specified key in this map.

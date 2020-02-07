@@ -41,6 +41,7 @@ class SemanticRelation(Relation):
     SemanticRelationType
         Semantic relation type
     """
+    @staticmethod
     def getSemanticTag(tag: str) -> SemanticRelationType:
         for i in range(len(SemanticRelation.semanticDependencyTags)):
             if tag == SemanticRelation.semanticDependency[i]:
@@ -60,6 +61,7 @@ class SemanticRelation(Relation):
     SemanticRelationType
         Reversed version of the semantic relation type
     """
+    @staticmethod
     def reverse(semanticRelationType: SemanticRelationType) -> SemanticRelationType:
         if semanticRelationType == SemanticRelationType.HYPERNYM:
             return SemanticRelationType.HYPONYM

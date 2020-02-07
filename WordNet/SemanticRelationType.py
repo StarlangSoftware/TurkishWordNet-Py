@@ -2,8 +2,6 @@ from enum import Enum, auto
 
 
 class SemanticRelationType(Enum):
-    
-    
     ANTONYM = auto()
     HYPERNYM = auto()
     INSTANCE_HYPERNYM = auto()

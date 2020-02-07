@@ -2,8 +2,6 @@ from enum import Enum, auto
 
 
 class CategoryType(Enum):
-    
-    
     MATHEMATICS = auto()
     SPORT = auto()
     MUSIC = auto()

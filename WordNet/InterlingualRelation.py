@@ -10,15 +10,15 @@ class InterlingualRelation(Relation):
                      "Similar_to", "Also_see", "Causes", "SYNONYM"]
 
     interlingualDependencyTags = [InterlingualDependencyType.HYPERNYM,
-                                 InterlingualDependencyType.NEAR_ANTONYM, InterlingualDependencyType.HOLO_MEMBER,
-                                 InterlingualDependencyType.HOLO_PART,
-                                 InterlingualDependencyType.HOLO_PORTION, InterlingualDependencyType.USAGE_DOMAIN,
-                                 InterlingualDependencyType.CATEGORY_DOMAIN,
-                                 InterlingualDependencyType.BE_IN_STATE, InterlingualDependencyType.SUBEVENT,
-                                 InterlingualDependencyType.VERB_GROUP,
-                                 InterlingualDependencyType.SIMILAR_TO, InterlingualDependencyType.ALSO_SEE,
-                                 InterlingualDependencyType.CAUSES,
-                                 InterlingualDependencyType.SYNONYM]
+                                  InterlingualDependencyType.NEAR_ANTONYM, InterlingualDependencyType.HOLO_MEMBER,
+                                  InterlingualDependencyType.HOLO_PART,
+                                  InterlingualDependencyType.HOLO_PORTION, InterlingualDependencyType.USAGE_DOMAIN,
+                                  InterlingualDependencyType.CATEGORY_DOMAIN,
+                                  InterlingualDependencyType.BE_IN_STATE, InterlingualDependencyType.SUBEVENT,
+                                  InterlingualDependencyType.VERB_GROUP,
+                                  InterlingualDependencyType.SIMILAR_TO, InterlingualDependencyType.ALSO_SEE,
+                                  InterlingualDependencyType.CAUSES,
+                                  InterlingualDependencyType.SYNONYM]
 
     """
     Compares specified str tag with the tags in InterlingualDependencyType array, ignoring case
@@ -34,6 +34,7 @@ class InterlingualRelation(Relation):
     InterlingualDependencyType
         Interlingual dependency type according to specified tag
     """
+    @staticmethod
     def getInterlingualDependencyTag(tag: str) -> InterlingualDependencyType:
         for i in range(len(InterlingualRelation.ilrDependency)):
             if tag == InterlingualRelation.ilrDependency[i]:
@@ -51,6 +52,7 @@ class InterlingualRelation(Relation):
     dependencyType : str
         interlingual dependency type
     """
+
     def __init__(self, name: str, dependencyType: str):
         super().__init__(name)
         self.__dependencyType = InterlingualRelation.getInterlingualDependencyTag(dependencyType)
@@ -63,6 +65,7 @@ class InterlingualRelation(Relation):
     InterlingualDependencyType
         Interlingual dependency type
     """
+
     def getType(self) -> InterlingualDependencyType:
         return self.__dependencyType
 
@@ -74,6 +77,7 @@ class InterlingualRelation(Relation):
     str
         String interlingual dependency type
     """
+
     def getTypeAsString(self) -> str:
         return self.__dependencyType.name
 
@@ -85,5 +89,6 @@ class InterlingualRelation(Relation):
     str
         String of relation name
     """
+
     def __str__(self) -> str:
         return self.getTypeAsString() + "->" + self.name
