@@ -20,16 +20,15 @@ class WordNet:
     __exceptionList: dict
     __interlingualList: dict
 
-    """
-    Constructor that initializes the SynSet list, literal list, reads exception.
-
-    PARAMETERS
-    ----------
-    fileName : str
-        Resource to be read for the WordNet.
-    """
-
     def __init__(self, fileName: str = None, exceptionFileName: str = None):
+        """
+        Constructor that initializes the SynSet list, literal list, reads exception.
+
+        PARAMETERS
+        ----------
+        fileName : str
+            Resource to be read for the WordNet.
+        """
         if fileName is None:
             fileName = "turkish_wordnet.xml"
         elif exceptionFileName is None:
@@ -105,17 +104,16 @@ class WordNet:
                                 else:
                                     currentLiteral.addRelation(SemanticRelation(childNode.text, typeNode.text))
 
-    """
-    Method constructs a DOM parser using the dtd/xml schema parser configuration and using this parser it
-    reads exceptions from file and puts to exceptionList HashMap.
-
-    PARAMETERS
-    ----------
-    exceptionFileName : str
-        Exception file to be read
-    """
-
     def readExceptionFile(self, exceptionFileName: str):
+        """
+        Method constructs a DOM parser using the dtd/xml schema parser configuration and using this parser it
+        reads exceptions from file and puts to exceptionList HashMap.
+
+        PARAMETERS
+        ----------
+        exceptionFileName : str
+            Exception file to be read
+        """
         root = xml.etree.ElementTree.parse(exceptionFileName).getroot()
         for wordNode in root:
             wordName = wordNode.attrib["name"]
@@ -132,16 +130,15 @@ class WordNet:
                 pos = Pos.NOUN
             self.__exceptionList[wordName] = ExceptionalWord(wordName, rootForm, pos)
 
-    """
-    Adds a specified literal to the literal list.
-
-    PARAMETERS
-    ----------
-    literal : Literal
-        literal to be added
-    """
-
     def addLiteralToLiteralList(self, literal: Literal):
+        """
+        Adds a specified literal to the literal list.
+
+        PARAMETERS
+        ----------
+        literal : Literal
+            literal to be added
+        """
         if literal.getName() in self.__literalList:
             literals = self.__literalList[literal.getName()]
         else:
@@ -149,107 +146,100 @@ class WordNet:
         literals.append(literal)
         self.__literalList[literal.getName()] = literals
 
-    """
-    Returns the values of the SynSet list.
-
-    RETURNS
-    -------
-    list
-        Values of the SynSet list
-    """
-
     def synSetList(self) -> list:
+        """
+        Returns the values of the SynSet list.
+
+        RETURNS
+        -------
+        list
+            Values of the SynSet list
+        """
         return list(self.__synSetList.values())
 
-    """
-    Returns the keys of the literal list.
-
-    RETURNS
-    -------
-    list
-        Keys of the literal list
-    """
-
     def literalList(self) -> list:
+        """
+        Returns the keys of the literal list.
+
+        RETURNS
+        -------
+        list
+            Keys of the literal list
+        """
         return list(self.__literalList.keys())
 
-    """
-    Adds specified SynSet to the SynSet list.
-
-    PARAMETERS
-    ----------
-    synSet : SynSet
-        SynSet to be added
-    """
-
     def addSynSet(self, synSet: SynSet):
+        """
+        Adds specified SynSet to the SynSet list.
+
+        PARAMETERS
+        ----------
+        synSet : SynSet
+            SynSet to be added
+        """
         self.__synSetList[synSet.getId()] = synSet
 
-    """
-    Removes specified SynSet from the SynSet list.
-
-    PARAMETERS
-    ----------
-    synSet : SynSet
-        SynSet to be removed
-    """
-
     def removeSynSet(self, synSet: SynSet):
+        """
+        Removes specified SynSet from the SynSet list.
+
+        PARAMETERS
+        ----------
+        synSet : SynSet
+            SynSet to be removed
+        """
         self.__synSetList.pop(synSet.getId())
 
-    """
-    Changes ID of a specified SynSet with the specified new ID.
-
-    PARAMETERS
-    ----------
-    synSet : SynSet
-        SynSet whose ID will be updated
-    newId : str 
-        new ID
-    """
-
     def changeSynSetId(self, synSet: SynSet, newId: str):
+        """
+        Changes ID of a specified SynSet with the specified new ID.
+
+        PARAMETERS
+        ----------
+        synSet : SynSet
+            SynSet whose ID will be updated
+        newId : str
+            new ID
+        """
         self.__synSetList.pop(synSet.getId())
         synSet.setId(newId)
         self.__synSetList[newId] = synSet
 
-    """
-    Returns SynSet with the specified SynSet ID.
-
-    PARAMETERS
-    ----------
-    synSetId : str
-        ID of the SynSet to be returned
-        
-    RETURNS
-    -------
-    SynSet
-        SynSet with the specified SynSet ID
-    """
-
     def getSynSetWithId(self, synSetId: str) -> SynSet:
+        """
+        Returns SynSet with the specified SynSet ID.
+
+        PARAMETERS
+        ----------
+        synSetId : str
+            ID of the SynSet to be returned
+
+        RETURNS
+        -------
+        SynSet
+            SynSet with the specified SynSet ID
+        """
         if synSetId in self.__synSetList:
             return self.__synSetList[synSetId]
         else:
             return None
 
-    """
-    Returns SynSet with the specified literal and sense index.
-
-    PARAMETERS
-    ----------
-    literal : Literal
-        SynSet literal
-    sense : int  
-        SynSet's corresponding sense index
-        
-    RETURNS
-    -------
-    SynSet
-        SynSet with the specified literal and sense index
-    """
-
     def getSynSetWithLiteral(self, literal: str, sense: int) -> SynSet:
+        """
+        Returns SynSet with the specified literal and sense index.
+
+        PARAMETERS
+        ----------
+        literal : Literal
+            SynSet literal
+        sense : int
+            SynSet's corresponding sense index
+
+        RETURNS
+        -------
+        SynSet
+            SynSet with the specified literal and sense index
+        """
         if literal in self.__literalList:
             literals = self.__literalList[literal]
             for current in literals:
@@ -257,101 +247,96 @@ class WordNet:
                     return self.getSynSetWithId(current.getSynSetId())
         return None
 
-    """
-    Returns the number of SynSets with a specified literal.
-
-    PARAMETERS
-    ----------
-    literal : Literal
-        literal to be searched in SynSets
-        
-    RETURNS
-    -------
-    int
-        The number of SynSets with a specified literal
-    """
-
     def numberOfSynSetsWithLiteral(self, literal: str) -> int:
+        """
+        Returns the number of SynSets with a specified literal.
+
+        PARAMETERS
+        ----------
+        literal : Literal
+            literal to be searched in SynSets
+
+        RETURNS
+        -------
+        int
+            The number of SynSets with a specified literal
+        """
         if literal in self.__literalList:
             return len(self.__literalList[literal])
         else:
             return 0
 
-    """
-    Returns a list of SynSets with a specified part of speech tag.
-
-    PARAMETERS
-    ----------
-    pos : Pos
-        Part of speech tag to be searched in SynSets
-        
-    RETURNS
-    -------
-    list
-        A list of SynSets with a specified part of speech tag
-    """
-
     def getSynSetsWithPartOfSpeech(self, pos: Pos) -> list:
+        """
+        Returns a list of SynSets with a specified part of speech tag.
+
+        PARAMETERS
+        ----------
+        pos : Pos
+            Part of speech tag to be searched in SynSets
+
+        RETURNS
+        -------
+        list
+            A list of SynSets with a specified part of speech tag
+        """
         result = []
         for synSet in self.__synSetList.values():
             if synSet.getPos() is not None and synSet.getPos() == pos:
                 result.append(synSet)
         return result
 
-    """
-    Returns a list of literals with a specified literal String.
-
-    PARAMETERS
-    ----------
-    literal : Literal
-        literal String to be searched in literal list
-        
-    RETURNS
-    -------
-    list
-        A list of literals with a specified literal String
-    """
-
     def getLiteralsWithName(self, literal: str) -> list:
+        """
+        Returns a list of literals with a specified literal String.
+
+        PARAMETERS
+        ----------
+        literal : Literal
+            literal String to be searched in literal list
+
+        RETURNS
+        -------
+        list
+            A list of literals with a specified literal String
+        """
         if literal in self.__literalList:
             return self.__literalList[literal]
         else:
             return []
 
-    """
-    Finds the SynSet with specified literal String and part of speech tag and adds to the given SynSet list.
-
-    PARAMETERS
-    ----------
-    result : list 
-        SynSet list to add the specified SynSet
-    literal : str
-        literal String to be searched in literal list
-    pos : Pos    
-        part of speech tag to be searched in SynSets
-    """
-
     def addSynSetsWithLiteralToList(self, result: list, literal: str, pos: Pos):
+        """
+        Finds the SynSet with specified literal String and part of speech tag and adds to the given SynSet list.
+
+        PARAMETERS
+        ----------
+        result : list
+            SynSet list to add the specified SynSet
+        literal : str
+            literal String to be searched in literal list
+        pos : Pos
+            part of speech tag to be searched in SynSets
+        """
         for current in self.__literalList[literal]:
             synSet = self.getSynSetWithId(current.getSynSetId)
             if synSet is not None and synSet.getPos() == pos:
                 result.append(synSet)
 
-    """
-    Finds SynSets with specified literal String and adds to the newly created SynSet list.
-
-    PARAMETERS
-    ----------
-    literal : Literal
-        literal String to be searched in literal list
-        
-    RETURNS
-    -------
-    list
-        Returns a list of SynSets with specified literal String
-    """
-
     def getSynSetsWithLiteral(self, literal: str) -> list:
+        """
+        Finds SynSets with specified literal String and adds to the newly created SynSet list.
+
+        PARAMETERS
+        ----------
+        literal : Literal
+            literal String to be searched in literal list
+
+        RETURNS
+        -------
+        list
+            Returns a list of SynSets with specified literal String
+        """
         result = []
         if literal in self.__literalList:
             for current in self.__literalList[literal]:
@@ -360,21 +345,21 @@ class WordNet:
                     result.append(synSet)
         return result
 
-    """
-    Finds literals with specified literal String and adds to the newly created literal String list. Ex: cleanest - clean
-
-    PARAMETERS
-    ----------
-    literal : Literal
-        literal String to be searched in literal list
-        
-    RETURNS
-    -------
-    list
-        Returns a list of literals with specified literal String
-    """
-
     def getLiteralsWithPossibleModifiedLiteral(self, literal: str) -> list:
+        """
+        Finds literals with specified literal String and adds to the newly created literal String list.
+        Ex: cleanest - clean
+
+        PARAMETERS
+        ----------
+        literal : Literal
+            literal String to be searched in literal list
+
+        RETURNS
+        -------
+        list
+            Returns a list of literals with specified literal String
+        """
         result = [literal]
         wordWithoutLastOne = literal[:len(literal) - 1]
         wordWithoutLastTwo = literal[:len(literal) - 2]
@@ -400,24 +385,23 @@ class WordNet:
             result.append(wordWithoutLastThree + "y")
         return result
 
-    """
-    Finds SynSets with specified literal String and part of speech tag, then adds to the newly created SynSet list. 
-    Ex: cleanest - clean
-
-    PARAMETERS
-    ----------
-    literal : str
-        Literal String to be searched in literal list
-    pos : Pos    
-        part of speech tag to be searched in SynSets
-        
-    RETURNS
-    -------
-    list
-        Returns a list of SynSets with specified literal String and part of speech tag
-    """
-
     def getSynSetsWithPossiblyModifiedLiteral(self, literal: str, pos: Pos) -> list:
+        """
+        Finds SynSets with specified literal String and part of speech tag, then adds to the newly created SynSet list.
+        Ex: cleanest - clean
+
+        PARAMETERS
+        ----------
+        literal : str
+            Literal String to be searched in literal list
+        pos : Pos
+            part of speech tag to be searched in SynSets
+
+        RETURNS
+        -------
+        list
+            Returns a list of SynSets with specified literal String and part of speech tag
+        """
         result = []
         modifiedLiterals = self.getLiteralsWithPossibleModifiedLiteral(literal)
         for modifiedLiteral in modifiedLiterals:
@@ -425,18 +409,17 @@ class WordNet:
                 self.addSynSetsWithLiteralToList(result, modifiedLiteral, pos)
         return result
 
-    """
-    Adds the reverse relations to the SynSet.
-
-    PARAMETERS
-    ----------
-    synSet : SynSet          
-        SynSet to add the reverse relations
-    semanticRelation : SemanticRelation
-        relation whose reverse will be added
-    """
-
     def addReverseRelation(self, synSet: SynSet, semanticRelation: SemanticRelation):
+        """
+        Adds the reverse relations to the SynSet.
+
+        PARAMETERS
+        ----------
+        synSet : SynSet
+            SynSet to add the reverse relations
+        semanticRelation : SemanticRelation
+            relation whose reverse will be added
+        """
         otherSynSet = self.getSynSetWithId(semanticRelation.getName())
         if otherSynSet is not None and SemanticRelation.reverse(semanticRelation.getRelationType()) is not None:
             otherRelation = SemanticRelation(synSet.getId(),
@@ -444,18 +427,17 @@ class WordNet:
             if not otherSynSet.containsRelation(otherRelation):
                 otherSynSet.addRelation(otherRelation)
 
-    """
-    Removes the reverse relations from the SynSet.
-
-    PARAMETERS
-    ----------
-    synSet : SynSet          
-        SynSet to remove the reverse relation
-    semanticRelation : SemanticRelation
-        relation whose reverse will be removed
-    """
-
     def removeReverseRelation(self, synSet: SynSet, semanticRelation: SemanticRelation):
+        """
+        Removes the reverse relations from the SynSet.
+
+        PARAMETERS
+        ----------
+        synSet : SynSet
+            SynSet to remove the reverse relation
+        semanticRelation : SemanticRelation
+            relation whose reverse will be removed
+        """
         otherSynSet = self.getSynSetWithId(semanticRelation.getName())
         if otherSynSet is not None and SemanticRelation.reverse(semanticRelation.getRelationType()) is not None:
             otherRelation = SemanticRelation(synSet.getId(),
@@ -463,38 +445,36 @@ class WordNet:
             if otherSynSet.containsRelation(otherRelation):
                 otherSynSet.removeRelation(otherRelation)
 
-    """
-    Loops through the SynSet list and adds the possible reverse relations.
-    """
-
     def equalizeSemanticRelations(self):
+        """
+        Loops through the SynSet list and adds the possible reverse relations.
+        """
         for synSet in self.__synSetList.values():
             for i in range(synSet.relationSize()):
                 if isinstance(synSet.getRelation(i), SemanticRelation):
                     self.addReverseRelation(synSet, synSet.getRelation(i))
 
-    """
-    Creates a list of literals with a specified word, or possible words corresponding to morphological parse.
-
-    PARAMETERS
-    ----------
-    word : str     
-        literal String
-    parse : MorphologicalParse    
-        morphological parse to get possible words
-    metaParse : MetamorphicParse
-        metamorphic parse to get possible words
-    fsm : FsmMorphologicalAnalyzer      
-        finite state machine morphological analyzer to be used at getting possible words
-
-    RETURNS
-    -------
-    list
-        A list of literal
-    """
-
     def constructLiterals(self, word: str, parse: MorphologicalParse, metaParse: MetamorphicParse,
                           fsm: FsmMorphologicalAnalyzer):
+        """
+        Creates a list of literals with a specified word, or possible words corresponding to morphological parse.
+
+        PARAMETERS
+        ----------
+        word : str
+            literal String
+        parse : MorphologicalParse
+            morphological parse to get possible words
+        metaParse : MetamorphicParse
+            metamorphic parse to get possible words
+        fsm : FsmMorphologicalAnalyzer
+            finite state machine morphological analyzer to be used at getting possible words
+
+        RETURNS
+        -------
+        list
+            A list of literal
+        """
         result = []
         if parse.size() > 0:
             if not parse.isPunctuation() and not parse.isCardinal() and not parse.isReal():
@@ -507,28 +487,27 @@ class WordNet:
             result.extend(self.getLiteralsWithName(word))
         return result
 
-    """
-    Creates a list of SynSets with a specified word, or possible words corresponding to morphological parse.
-
-    PARAMETERS
-    ----------
-    word : str     
-        literal String  to get SynSets with
-    parse : MorphologicalParse    
-        morphological parse to get SynSets with proper literals
-    metaParse : MetamorphicParse
-        metamorphic parse to get possible words
-    fsm : FsmMorphologicalAnalyzer      
-        finite state machine morphological analyzer to be used at getting possible words
-
-    RETURNS
-    -------
-    list
-        A list of SynSets
-    """
-
     def constructSynSets(self, word: str, parse: MorphologicalParse, metaParse: MetamorphicParse,
                          fsm: FsmMorphologicalAnalyzer) -> list:
+        """
+        Creates a list of SynSets with a specified word, or possible words corresponding to morphological parse.
+
+        PARAMETERS
+        ----------
+        word : str
+            literal String  to get SynSets with
+        parse : MorphologicalParse
+            morphological parse to get SynSets with proper literals
+        metaParse : MetamorphicParse
+            metamorphic parse to get possible words
+        fsm : FsmMorphologicalAnalyzer
+            finite state machine morphological analyzer to be used at getting possible words
+
+        RETURNS
+        -------
+        list
+            A list of SynSets
+        """
         result = []
         if parse.size() > 0:
             if parse.isProperNoun():
@@ -591,37 +570,36 @@ class WordNet:
             result.extend(self.getSynSetsWithLiteral(word))
         return result
 
-    """
-    Returns a list of literals using 3 possible words gathered with the specified morphological parses and metamorphic 
-    parses.
-
-    PARAMETERS
-    ----------
-    morphologicalParse1 : MorphologicalParse
-        morphological parse to get possible words
-    morphologicalParse2 : MorphologicalParse
-        morphological parse to get possible words
-    morphologicalParse3 : MorphologicalParse 
-        morphological parse to get possible words
-    metaParse1 : MetamorphicParse         
-        metamorphic parse to get possible words
-    metaParse2 : MetamorphicParse          
-        metamorphic parse to get possible words
-    metaParse3 : MetamorphicParse          
-        metamorphic parse to get possible words
-    fsm : FsmMorphologicalAnalyzer                
-        finite state machine morphological analyzer to be used at getting possible words
-    
-    RETURNS
-    -------
-    list
-        A list of literals
-    """
-
     def constructIdiomLiterals(self, fsm: FsmMorphologicalAnalyzer, morphologicalParse1: MorphologicalParse,
                                metaParse1: MetamorphicParse, morphologicalParse2: MorphologicalParse,
                                metaParse2: MetamorphicParse, morphologicalParse3: MorphologicalParse = None,
                                metaParse3: MetamorphicParse = None) -> list:
+        """
+        Returns a list of literals using 3 possible words gathered with the specified morphological parses and
+        metamorphic parses.
+
+        PARAMETERS
+        ----------
+        morphologicalParse1 : MorphologicalParse
+            morphological parse to get possible words
+        morphologicalParse2 : MorphologicalParse
+            morphological parse to get possible words
+        morphologicalParse3 : MorphologicalParse
+            morphological parse to get possible words
+        metaParse1 : MetamorphicParse
+            metamorphic parse to get possible words
+        metaParse2 : MetamorphicParse
+            metamorphic parse to get possible words
+        metaParse3 : MetamorphicParse
+            metamorphic parse to get possible words
+        fsm : FsmMorphologicalAnalyzer
+            finite state machine morphological analyzer to be used at getting possible words
+
+        RETURNS
+        -------
+        list
+            A list of literals
+        """
         result = []
         possibleWords1 = fsm.getPossibleWords(morphologicalParse1, metaParse1)
         possibleWords2 = fsm.getPossibleWords(morphologicalParse2, metaParse2)
@@ -638,37 +616,36 @@ class WordNet:
                     result.extend(self.getLiteralsWithName(possibleWord1 + " " + possibleWord2))
         return result
 
-    """
-    Returns a list of SynSets using 3 possible words gathered with the specified morphological parses and metamorphic 
-    parses.
-
-    PARAMETERS
-    ----------
-    morphologicalParse1 : MorphologicalParse
-        morphological parse to get possible words
-    morphologicalParse2 : MorphologicalParse
-        morphological parse to get possible words
-    morphologicalParse3 : MorphologicalParse 
-        morphological parse to get possible words
-    metaParse1 : MetamorphicParse         
-        metamorphic parse to get possible words
-    metaParse2 : MetamorphicParse          
-        metamorphic parse to get possible words
-    metaParse3 : MetamorphicParse          
-        metamorphic parse to get possible words
-    fsm : FsmMorphologicalAnalyzer                
-        finite state machine morphological analyzer to be used at getting possible words
-
-    RETURNS
-    -------
-    list
-        A list of SynSets
-    """
-
     def constructIdiomSynSets(self, fsm: FsmMorphologicalAnalyzer, morphologicalParse1: MorphologicalParse,
                               metaParse1: MetamorphicParse, morphologicalParse2: MorphologicalParse,
                               metaParse2: MetamorphicParse, morphologicalParse3: MorphologicalParse = None,
                               metaParse3: MetamorphicParse = None) -> list:
+        """
+        Returns a list of SynSets using 3 possible words gathered with the specified morphological parses and
+        metamorphic parses.
+
+        PARAMETERS
+        ----------
+        morphologicalParse1 : MorphologicalParse
+            morphological parse to get possible words
+        morphologicalParse2 : MorphologicalParse
+            morphological parse to get possible words
+        morphologicalParse3 : MorphologicalParse
+            morphological parse to get possible words
+        metaParse1 : MetamorphicParse
+            metamorphic parse to get possible words
+        metaParse2 : MetamorphicParse
+            metamorphic parse to get possible words
+        metaParse3 : MetamorphicParse
+            metamorphic parse to get possible words
+        fsm : FsmMorphologicalAnalyzer
+            finite state machine morphological analyzer to be used at getting possible words
+
+        RETURNS
+        -------
+        list
+            A list of SynSets
+        """
         result = []
         possibleWords1 = fsm.getPossibleWords(morphologicalParse1, metaParse1)
         possibleWords2 = fsm.getPossibleWords(morphologicalParse2, metaParse2)
@@ -688,35 +665,33 @@ class WordNet:
                         result.extend(self.getSynSetsWithLiteral(possibleWord1 + " " + possibleWord2))
         return result
 
-    """
-    Sorts definitions of SynSets in SynSet list according to their lengths.
-    """
-
     def sortDefinitions(self):
+        """
+        Sorts definitions of SynSets in SynSet list according to their lengths.
+        """
         for synSet in self.__synSetList:
             synSet.sortDefinitions()
 
-    """
-    Returns a list of SynSets with the interlingual relations of a specified SynSet ID.
-
-    PARAMETERS
-    ----------
-    synSetId : str
-        SynSet ID to be searched
-        
-    RETURNS
-    -------
-    list
-        A list of SynSets with the interlingual relations of a specified SynSet ID
-    """
-
     def getInterlingual(self, synSetId: str) -> list:
+        """
+        Returns a list of SynSets with the interlingual relations of a specified SynSet ID.
+
+        PARAMETERS
+        ----------
+        synSetId : str
+            SynSet ID to be searched
+
+        RETURNS
+        -------
+        list
+            A list of SynSets with the interlingual relations of a specified SynSet ID
+        """
         if synSetId in self.__interlingualList:
             return self.__interlingualList[synSetId]
         else:
             return []
 
-    def containsSameLiteral(self, synSet1: SynSet, synSet2: SynSet) -> bool:
+    def __containsSameLiteral(self, synSet1: SynSet, synSet2: SynSet) -> bool:
         for i in range(synSet1.getSynonym().literalSize()):
             literal1 = synSet1.getSynonym().getLiteral(i)
             for j in range(i + 1, synSet2.getSynonym().literalSize()):
@@ -725,27 +700,27 @@ class WordNet:
                     return True
         return False
 
-    """
-    Prints the SynSets without part of speech tags.
-    """
-    def noPosCheck(self):
+    def __noPosCheck(self):
+        """
+        Prints the SynSets without part of speech tags.
+        """
         for synSet in self.synSetList():
             if synSet.getPos() is None:
                 print(synSet.getId() + "\t" + synSet.getSynonym().getLiteral(0).getName() + "\t" +
                       synSet.getDefinition() + "\t" + "has no part of speech")
 
-    """
-    Prints the SynSets without definitions.
-    """
-    def noDefinitionCheck(self):
+    def __noDefinitionCheck(self):
+        """
+        Prints the SynSets without definitions.
+        """
         for synSet in self.synSetList():
             if synSet.getDefinition() is None:
                 print("SynSet " + synSet.getId() + " has no definition " + synSet.getSynonym().__str__())
 
-    """
-    Print the literals with same senses.
-    """
-    def sameLiteralSameSenseCheck(self):
+    def __sameLiteralSameSenseCheck(self):
+        """
+        Prints the literals with same senses.
+        """
         for name in self.__literalList.keys():
             literals = self.__literalList[name]
             for i in range(len(literals)):
@@ -753,18 +728,18 @@ class WordNet:
                     if literals[i].getSense() == literals[j].getSense():
                         print("Literal " + name + " has same senses.")
 
-    """
-    Prints the literals with same SynSets.
-    """
-    def sameLiteralSameSynSetCheck(self):
+    def __sameLiteralSameSynSetCheck(self):
+        """
+        Prints the literals with same SynSets.
+        """
         for synSet in self.synSetList():
-            if self.containsSameLiteral(synSet, synSet):
+            if self.__containsSameLiteral(synSet, synSet):
                 print(synSet.getPos().__str__() + "->" + synSet.getSynonym().__str__() + "->" + synSet.getDefinition())
 
-    """
-    Prints SynSets without relation IDs.
-    """
-    def semanticRelationNoIDCheck(self):
+    def __semanticRelationNoIDCheck(self):
+        """
+        Prints SynSets without relation IDs.
+        """
         for synSet in self.synSetList():
             j = 0
             while j < synSet.relationSize():
@@ -776,10 +751,10 @@ class WordNet:
                           + synSet.getSynonym().__str__())
                 j = j + 1
 
-    """
-    Prints SynSets with same relations.
-    """
-    def sameSemanticRelationCheck(self):
+    def __sameSemanticRelationCheck(self):
+        """
+        Prints SynSets with same relations.
+        """
         for synSet in self.synSetList():
             j = 0
             while j < synSet.relationSize():
@@ -795,27 +770,26 @@ class WordNet:
                 else:
                     j = j + 1
 
-    """
-    Performs check processes.
-    """
     def check(self):
-        self.noPosCheck()
-        self.noDefinitionCheck()
-        self.sameSemanticRelationCheck()
-        self.semanticRelationNoIDCheck()
-        self.sameLiteralSameSynSetCheck()
-        self.sameLiteralSameSenseCheck()
-
-    """
-    Method to write SynSets to the specified file in the XML format.
-
-    PARAMETERS
-    ----------
-    fileName : str
-        file name to write XML files
-    """
+        """
+        Performs check processes.
+        """
+        self.__noPosCheck()
+        self.__noDefinitionCheck()
+        self.__sameSemanticRelationCheck()
+        self.__semanticRelationNoIDCheck()
+        self.__sameLiteralSameSynSetCheck()
+        self.__sameLiteralSameSenseCheck()
 
     def saveAsXml(self, fileName: str):
+        """
+        Method to write SynSets to the specified file in the XML format.
+
+        PARAMETERS
+        ----------
+        fileName : str
+            file name to write XML files
+        """
         outFile = open(fileName, "w", encoding="utf8")
         outFile.write("<SYNSETS>\n")
         for synSet in self.__synSetList.values():
@@ -823,125 +797,119 @@ class WordNet:
         outFile.write("</SYNSETS>\n")
         outFile.close()
 
-    """
-    Returns the size of the SynSet list.
-
-    RETURNS
-    -------
-    int
-        The size of the SynSet list
-    """
-
     def size(self) -> int:
+        """
+        Returns the size of the SynSet list.
+
+        RETURNS
+        -------
+        int
+            The size of the SynSet list
+        """
         return len(self.__synSetList)
 
-    """
-    Conduct common operations between similarity metrics.
-
-    PARAMETERS
-    ----------
-    pathToRootOfSynSet1 : list
-        First list of Strings
-    pathToRootOfSynSet2 : list
-        Second list of Strings
-        
-    RETURNS
-    -------
-    int
-        Path length
-    """
-
     def findPathLength(self, pathToRootOfSynSet1: list, pathToRootOfSynSet2: list) -> int:
+        """
+        Conduct common operations between similarity metrics.
+
+        PARAMETERS
+        ----------
+        pathToRootOfSynSet1 : list
+            First list of Strings
+        pathToRootOfSynSet2 : list
+            Second list of Strings
+
+        RETURNS
+        -------
+        int
+            Path length
+        """
         for i in range(len(pathToRootOfSynSet1)):
             foundIndex = pathToRootOfSynSet2.index(pathToRootOfSynSet1[i])
             if foundIndex != -1:
                 return i + foundIndex - 1
         return -1
 
-    """
-    Returns depth and ID of the LCS.
+    def __findLCS(self, pathToRootOfSynSet1: list, pathToRootOfSynSet2: list) -> tuple:
+        """
+        Returns depth and ID of the LCS.
 
-    PARAMETERS
-    ----------
-    pathToRootOfSynSet1 : list
-        First list of Strings
-    pathToRootOfSynSet2 : list
-        Second list of Strings
+        PARAMETERS
+        ----------
+        pathToRootOfSynSet1 : list
+            First list of Strings
+        pathToRootOfSynSet2 : list
+            Second list of Strings
 
-    RETURNS
-    -------
-    tuple
-        Depth and ID of the LCS
-    """
-
-    def findLCS(self, pathToRootOfSynSet1: list, pathToRootOfSynSet2: list) -> tuple:
+        RETURNS
+        -------
+        tuple
+            Depth and ID of the LCS
+        """
         for i in range(len(pathToRootOfSynSet1)):
             LCSid = pathToRootOfSynSet1[i]
             if LCSid in pathToRootOfSynSet2:
                 return LCSid, len(pathToRootOfSynSet1) - i + 1
         return None
 
-    """
-    Returns the depth of path.
-
-    PARAMETERS
-    ----------
-    pathToRootOfSynSet1 : list
-        First list of Strings
-    pathToRootOfSynSet2 : list
-        Second list of Strings
-
-    RETURNS
-    -------
-    int
-        LCS depth
-    """
-
     def findLCSDepth(self, pathToRootOfSynSet1: list, pathToRootOfSynSet2: list) -> int:
-        temp = self.findLCS(pathToRootOfSynSet1, pathToRootOfSynSet2)
+        """
+        Returns the depth of path.
+
+        PARAMETERS
+        ----------
+        pathToRootOfSynSet1 : list
+            First list of Strings
+        pathToRootOfSynSet2 : list
+            Second list of Strings
+
+        RETURNS
+        -------
+        int
+            LCS depth
+        """
+        temp = self.__findLCS(pathToRootOfSynSet1, pathToRootOfSynSet2)
         if temp is not None:
             return temp[1]
         else:
             return -1
 
-    """
-    Returns the ID of LCS of path.
-
-    PARAMETERS
-    ----------
-    pathToRootOfSynSet1 : list
-        First list of Strings
-    pathToRootOfSynSet2 : list
-        Second list of Strings
-
-    RETURNS
-    -------
-    str
-        LCS ID
-    """
-
     def findLCSid(self, pathToRootOfSynSet1: list, pathToRootOfSynSet2: list) -> str:
-        temp = self.findLCS(pathToRootOfSynSet1, pathToRootOfSynSet2)
+        """
+        Returns the ID of LCS of path.
+
+        PARAMETERS
+        ----------
+        pathToRootOfSynSet1 : list
+            First list of Strings
+        pathToRootOfSynSet2 : list
+            Second list of Strings
+
+        RETURNS
+        -------
+        str
+            LCS ID
+        """
+        temp = self.__findLCS(pathToRootOfSynSet1, pathToRootOfSynSet2)
         if temp is not None:
             return temp[0]
         else:
             return None
 
-    """
-    Finds the parent of a node. It does not move until the root, instead it goes one level up.
-
-    PARAMETERS
-    ----------
-    root : SynSet
-        SynSet whose parent will be find
-        
-    RETURNS
-    -------
-    SynSet
-        Parent SynSet
-    """
-
     def percolateUp(self, root: SynSet) -> SynSet:
+        """
+        Finds the parent of a node. It does not move until the root, instead it goes one level up.
+
+        PARAMETERS
+        ----------
+        root : SynSet
+            SynSet whose parent will be find
+
+        RETURNS
+        -------
+        SynSet
+            Parent SynSet
+        """
         for i in range(root.relationSize()):
             r = root.getRelation(i)
             if isinstance(r, SemanticRelation):
@@ -951,21 +919,20 @@ class WordNet:
                     return root
         return None
 
-    """
-    Finds the path to the root node of a SynSets.
-
-    PARAMETERS
-    ----------
-    synSet : SynSet
-        SynSet whose root path will be found
-        
-    RETURNS
-    -------
-    list
-        List of String corresponding to nodes in the path
-    """
-
     def findPathToRoot(self, synSet: SynSet) -> list:
+        """
+        Finds the path to the root node of a SynSets.
+
+        PARAMETERS
+        ----------
+        synSet : SynSet
+            SynSet whose root path will be found
+
+        RETURNS
+        -------
+        list
+            List of String corresponding to nodes in the path
+        """
         pathToRoot = []
         while synSet is not None:
             if synSet.getId() in pathToRoot:

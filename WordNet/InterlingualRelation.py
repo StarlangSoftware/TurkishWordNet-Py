@@ -20,75 +20,71 @@ class InterlingualRelation(Relation):
                                   InterlingualDependencyType.CAUSES,
                                   InterlingualDependencyType.SYNONYM]
 
-    """
-    Compares specified str tag with the tags in InterlingualDependencyType array, ignoring case
-    considerations.
-
-    PARAMETERS
-    ----------
-    tag : str
-        String to compare
-        
-    RETURNS
-    -------
-    InterlingualDependencyType
-        Interlingual dependency type according to specified tag
-    """
     @staticmethod
     def getInterlingualDependencyTag(tag: str) -> InterlingualDependencyType:
+        """
+        Compares specified str tag with the tags in InterlingualDependencyType array, ignoring case
+        considerations.
+
+        PARAMETERS
+        ----------
+        tag : str
+            String to compare
+
+        RETURNS
+        -------
+        InterlingualDependencyType
+            Interlingual dependency type according to specified tag
+        """
         for i in range(len(InterlingualRelation.ilrDependency)):
             if tag == InterlingualRelation.ilrDependency[i]:
                 return InterlingualRelation.interlingualDependencyTags[i]
         return None
 
-    """
-    InterlingualRelation method sets its relation with the specified String name, then gets the InterlingualDependencyType
-    according to specified String dependencyType.
-
-    PARAMETERS
-    ----------
-    name : str             
-        relation name
-    dependencyType : str
-        interlingual dependency type
-    """
-
     def __init__(self, name: str, dependencyType: str):
+        """
+        InterlingualRelation method sets its relation with the specified String name, then gets the
+        InterlingualDependencyType according to specified String dependencyType.
+
+        PARAMETERS
+        ----------
+        name : str
+            relation name
+        dependencyType : str
+            interlingual dependency type
+        """
         super().__init__(name)
         self.__dependencyType = InterlingualRelation.getInterlingualDependencyTag(dependencyType)
 
-    """
-    Accessor method to get the private InterlingualDependencyType.
-
-    RETURNS
-    -------
-    InterlingualDependencyType
-        Interlingual dependency type
-    """
-
     def getType(self) -> InterlingualDependencyType:
+        """
+        Accessor method to get the private InterlingualDependencyType.
+
+        RETURNS
+        -------
+        InterlingualDependencyType
+            Interlingual dependency type
+        """
         return self.__dependencyType
 
-    """
-    Method to retrieve interlingual dependency type as str.
-
-    RETURNS
-    -------
-    str
-        String interlingual dependency type
-    """
-
     def getTypeAsString(self) -> str:
+        """
+        Method to retrieve interlingual dependency type as str.
+
+        RETURNS
+        -------
+        str
+            String interlingual dependency type
+        """
         return self.__dependencyType.name
 
-    """
-    __str__ method to print interlingual dependency type.
-
-    RETURNS
-    -------
-    str
-        String of relation name
-    """
-
     def __str__(self) -> str:
+        """
+        __str__ method to print interlingual dependency type.
+
+        RETURNS
+        -------
+        str
+            String of relation name
+        """
         return self.getTypeAsString() + "->" + self.name
