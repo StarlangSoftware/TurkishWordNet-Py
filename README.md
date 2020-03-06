@@ -31,8 +31,7 @@ You can also see either [Java](https://github.com/olcaytaner/TurkishWordNet)
 or [C++](https://github.com/olcaytaner/TurkishWordNet-CPP) repository.
 ## Requirements
 
-* [Python 2.8 or higher](#python)
-* [Maven](#maven)
+* [Python 3.7 or higher](#python)
 * [Git](#git)
 
 ### Python 
@@ -42,13 +41,6 @@ To check if you have a compatible version of Python installed, use the following
     python -V
     
 You can find the latest version of Python [here](https://www.python.org/downloads/).
-
-### Maven
-To check if you have Maven installed, use the following command:
-
-    mvn --version
-    
-To install Maven, you can follow the instructions [here](https://maven.apache.org/install.html).      
 
 ### Git
 
@@ -73,7 +65,7 @@ Steps for opening the cloned project:
 * Select **File | Open** from main menu
 * Choose `TurkishWordNet-Py` file
 * Select open as project option
-* Couple of seconds, dependencies with Maven will be downloaded. 
+* Couple of seconds, dependencies will be downloaded. 
 
 
 ## Compile
