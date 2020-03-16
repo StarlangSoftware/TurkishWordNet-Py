@@ -84,50 +84,48 @@ Detailed Description
 
 Türkçe WordNet KeNet'i yüklemek için
 
-	WordNet a = new WordNet();
+	a = WordNet()
 
 Belirli bir WordNet'i yüklemek için
 
-	WordNet domain = new WordNet("domain_wordnet.xml", new Locale("tr"));
+	domain = WordNet("domain_wordnet.xml");
 
 Tüm synsetleri getirmek için
 
-	Collection<SynSet> synSetList()
+	synSetList(self) -> list
 
 Belirli bir synseti getirmek için
 
-	SynSet getSynSetWithId(String synSetId)
+	getSynSetWithId(self, synSetId: str) -> SynSet
 
 Belirli bir kelimenin tüm anlamlarını (Synsetlerini) getirmek için
 
-	ArrayList<SynSet> getSynSetsWithLiteral(String literal)
+	getSynSetsWithLiteral(self, literal: str) -> list
 
 ## SynSet
 
 Bir synsetin eş anlamlı literallerini bulmak için Synonym elde edilir.
 
-	Synonym getSynonym()
+	getSynonym(self) -> Synonym
 	
 Bir synsetin içindeki Relation'ları indeks bazlı elde etmek için
 
-	Relation getRelation(int index)
+	getRelation(self, index: int) -> Relation
 
 metodu ile bulunur. Örneğin, bir synsetin içindeki tüm ilişkiler
 
-	for (int i = 0; i < synset.relationSize(); i++){
+	for i in range(synset.relationSize()):
 		relation = synset.getRelation(i);
 		...
-	}
 
 ## Synonym
 
 Synonym'in içindeki literaller indeks bazlı
 
-	Literal getLiteral(int index)
+	getLiteral(self, index: int) -> Literal
 
 metodu ile bulunur. Örneğin, bir synonym içindeki tüm literaller
 
-	for (int i = 0; i < synonym.literalSize(); i++){
+	for i in range(synonym.literalSize()):
 		literal = synonym.getLiteral(i);
 		...
-	}
