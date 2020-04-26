@@ -27,8 +27,9 @@ Each entry in the dictionary is enclosed by <SYNSET> and </SYNSET> tags. Synset 
 
 For Developers
 ============
-You can also see either [Java](https://github.com/olcaytaner/TurkishWordNet) 
-or [C++](https://github.com/olcaytaner/TurkishWordNet-CPP) repository.
+
+You can also see [Java](https://github.com/starlangsoftware/TurkishWordNet), [C++](https://github.com/starlangsoftware/TurkishWordNet-CPP), or [C#](https://github.com/starlangsoftware/TurkishWordNet-CS) repository.
+
 ## Requirements
 
 * [Python 3.7 or higher](#python)
