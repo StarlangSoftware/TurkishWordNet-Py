@@ -3,3 +3,13 @@
 /dist/
 /NlpToolkit_WordNet.egg-info/
 /lib/python3.7/site-packages/
+WordNet/__pycache__/__init__.cpython-37.pyc
+WordNet/__pycache__/InterlingualDependencyType.cpython-37.pyc
+WordNet/__pycache__/InterlingualRelation.cpython-37.pyc
+WordNet/__pycache__/Literal.cpython-37.pyc
+WordNet/__pycache__/Relation.cpython-37.pyc
+WordNet/__pycache__/SemanticRelation.cpython-37.pyc
+WordNet/__pycache__/SemanticRelationType.cpython-37.pyc
+WordNet/__pycache__/Synonym.cpython-37.pyc
+WordNet/__pycache__/SynSet.cpython-37.pyc
+WordNet/__pycache__/WordNet.cpython-37.pyc
