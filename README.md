@@ -56,7 +56,7 @@ Use Git for cloning the code to your local or below line for Ubuntu:
 
 A directory called DataStructure will be created. Or you can use below link for exploring the code:
 
-	git clone https://github.com/olcaytaner/TurkishWordNet-Py.git
+	git clone https://github.com/starlangsoftware/TurkishWordNet-Py.git
 
 ## Open project with Pycharm IDE
 
@@ -67,13 +67,6 @@ Steps for opening the cloned project:
 * Choose `TurkishWordNet-Py` file
 * Select open as project option
 * Couple of seconds, dependencies will be downloaded. 
-
-
-## Compile
-
-**From IDE**
-
-After being done with the downloading and Maven indexing, select **Build Project** option from **Build** menu. After compilation process, user can run TurkishWordNet-Py.
 
 Detailed Description
 ============
