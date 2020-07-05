@@ -29,13 +29,12 @@ class WordNet:
         fileName : str
             Resource to be read for the WordNet.
         """
+        self.__exceptionList = {}
         if fileName is None:
             fileName = "turkish_wordnet.xml"
-        elif exceptionFileName is None:
-            exceptionFileName = "english_exception.xml"
+        elif exceptionFileName is not None:
             self.readExceptionFile(exceptionFileName)
         self.__interlingualList = {}
-        self.__exceptionList = {}
         self.__synSetList = OrderedDict()
         self.__literalList = OrderedDict()
         root = xml.etree.ElementTree.parse(fileName).getroot()
@@ -128,7 +127,12 @@ class WordNet:
                 pos = Pos.VERB
             else:
                 pos = Pos.NOUN
-            self.__exceptionList[wordName] = ExceptionalWord(wordName, rootForm, pos)
+            if wordName in self.__exceptionList:
+                wordList = self.__exceptionList[wordName]
+            else:
+                wordList = []
+            wordList.append(ExceptionalWord(wordName, rootForm, pos))
+            self.__exceptionList[wordName] = wordList
 
     def addLiteralToLiteralList(self, literal: Literal):
         """
@@ -364,8 +368,9 @@ class WordNet:
         wordWithoutLastOne = literal[:len(literal) - 1]
         wordWithoutLastTwo = literal[:len(literal) - 2]
         wordWithoutLastThree = literal[:len(literal) - 3]
-        if literal in self.__exceptionList and self.__exceptionList[literal].getRoot() in self.__literalList:
-            result.append(self.__exceptionList[literal].getRoot())
+        if literal in self.__exceptionList:
+            for exceptionalWord in self.__exceptionList[literal]:
+                result.append(exceptionalWord.getRoot())
         if literal.endswith("s") and wordWithoutLastOne in self.__literalList:
             result.append(wordWithoutLastOne)
         if (literal.endswith("es") or literal.endswith("ed") or literal.endswith("er")) \
@@ -700,87 +705,6 @@ class WordNet:
                     return True
         return False
 
-    def __noPosCheck(self):
-        """
-        Prints the SynSets without part of speech tags.
-        """
-        for synSet in self.synSetList():
-            if synSet.getPos() is None:
-                print(synSet.getId() + "\t" + synSet.getSynonym().getLiteral(0).getName() + "\t" +
-                      synSet.getDefinition() + "\t" + "has no part of speech")
-
-    def __noDefinitionCheck(self):
-        """
-        Prints the SynSets without definitions.
-        """
-        for synSet in self.synSetList():
-            if synSet.getDefinition() is None:
-                print("SynSet " + synSet.getId() + " has no definition " + synSet.getSynonym().__str__())
-
-    def __sameLiteralSameSenseCheck(self):
-        """
-        Prints the literals with same senses.
-        """
-        for name in self.__literalList.keys():
-            literals = self.__literalList[name]
-            for i in range(len(literals)):
-                for j in range(i + 1, len(literals)):
-                    if literals[i].getSense() == literals[j].getSense():
-                        print("Literal " + name + " has same senses.")
-
-    def __sameLiteralSameSynSetCheck(self):
-        """
-        Prints the literals with same SynSets.
-        """
-        for synSet in self.synSetList():
-            if self.__containsSameLiteral(synSet, synSet):
-                print(synSet.getPos().__str__() + "->" + synSet.getSynonym().__str__() + "->" + synSet.getDefinition())
-
-    def __semanticRelationNoIDCheck(self):
-        """
-        Prints SynSets without relation IDs.
-        """
-        for synSet in self.synSetList():
-            j = 0
-            while j < synSet.relationSize():
-                relation = synSet.getRelation(j)
-                if isinstance(relation, SemanticRelation) and self.getSynSetWithId(relation.getName()) is None:
-                    synSet.removeRelation(relation)
-                    j = j - 1
-                    print("Relation " + relation.getName() + " of Synset " + synSet.getId() + " does not exists "
-                          + synSet.getSynonym().__str__())
-                j = j + 1
-
-    def __sameSemanticRelationCheck(self):
-        """
-        Prints SynSets with same relations.
-        """
-        for synSet in self.synSetList():
-            j = 0
-            while j < synSet.relationSize():
-                relation = synSet.getRelation(j)
-                same = None
-                for k in range(j + 1, synSet.relationSize()):
-                    if relation.getName() == synSet.getRelation(k).getName():
-                        print(relation.getName() + "--" + synSet.getRelation(k).getName()
-                              + " are same relation for synset " + synSet.getId())
-                        same = synSet.getRelation(k)
-                if same is not None:
-                    synSet.removeRelation(same)
-                else:
-                    j = j + 1
-
-    def check(self):
-        """
-        Performs check processes.
-        """
-        self.__noPosCheck()
-        self.__noDefinitionCheck()
-        self.__sameSemanticRelationCheck()
-        self.__semanticRelationNoIDCheck()
-        self.__sameLiteralSameSynSetCheck()
-        self.__sameLiteralSameSenseCheck()
-
     def saveAsXml(self, fileName: str):
         """
         Method to write SynSets to the specified file in the XML format.
@@ -825,8 +749,8 @@ class WordNet:
             Path length
         """
         for i in range(len(pathToRootOfSynSet1)):
-            foundIndex = pathToRootOfSynSet2.index(pathToRootOfSynSet1[i])
-            if foundIndex != -1:
+            if pathToRootOfSynSet1[i] in pathToRootOfSynSet2:
+                foundIndex = pathToRootOfSynSet2.index(pathToRootOfSynSet1[i])
                 return i + foundIndex - 1
         return -1
 
