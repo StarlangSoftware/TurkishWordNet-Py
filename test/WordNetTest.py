@@ -145,11 +145,11 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(13, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-1198750"))))
         self.assertEquals(14, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0412120"))))
         self.assertEquals(15, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-1116690"))))
-        self.assertEquals(16, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0621870"))))
-        self.assertEquals(17, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0822980"))))
-        self.assertEquals(18, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0178450"))))
-        self.assertEquals(19, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0600460"))))
-        self.assertEquals(20, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0656390"))))
+        self.assertEquals(13, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0621870"))))
+        self.assertEquals(14, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0822980"))))
+        self.assertEquals(15, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0178450"))))
+        self.assertEquals(16, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0600460"))))
+        self.assertEquals(17, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0656390"))))
 
 
 if __name__ == '__main__':
