@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='NlpToolkit-WordNet',
-    version='1.0.10',
+    version='1.0.11',
     packages=['WordNet', 'WordNet.Similarity'],
     url='https://github.com/olcaytaner/TurkishWordNet-Py',
     license='',
