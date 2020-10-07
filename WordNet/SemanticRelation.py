@@ -97,6 +97,8 @@ class SemanticRelation(Relation):
             return SemanticRelationType.MEMBER_USAGE
         elif semanticRelationType == SemanticRelationType.MEMBER_USAGE:
             return SemanticRelationType.DOMAIN_USAGE
+        elif semanticRelationType == SemanticRelationType.DERIVATION_RELATED:
+            return SemanticRelationType.DERIVATION_RELATED
         return None
 
     def __init__(self, name: str, relationType, toIndex=None):
