@@ -81,11 +81,11 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(59, self.turkish.numberOfSynSetsWithLiteral("çıkmak"))
 
     def test_GetSynSetsWithPartOfSpeech(self):
-        self.assertEquals(43846, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.NOUN)))
-        self.assertEquals(17675, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.VERB)))
-        self.assertEquals(12358, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADJECTIVE)))
-        self.assertEquals(2523, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADVERB)))
-        self.assertEquals(339, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.INTERJECTION)))
+        self.assertEquals(44074, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.NOUN)))
+        self.assertEquals(17791, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.VERB)))
+        self.assertEquals(12416, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADJECTIVE)))
+        self.assertEquals(2550, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADVERB)))
+        self.assertEquals(342, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.INTERJECTION)))
         self.assertEquals(68, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PRONOUN)))
         self.assertEquals(60, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.CONJUNCTION)))
         self.assertEquals(29, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PREPOSITION)))
@@ -127,7 +127,7 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(19, len(self.turkish.getInterlingual("ENG31-00149403-v")))
 
     def test_Size(self):
-        self.assertEquals(76898, self.turkish.size())
+        self.assertEquals(77330, self.turkish.size())
 
     def test_FindPathToRoot(self):
         self.assertEquals(1, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0814560"))))
