@@ -1,7 +1,7 @@
 For Developers
 ============
 
-You can also see [Java](https://github.com/starlangsoftware/TurkishWordNet), [C++](https://github.com/starlangsoftware/TurkishWordNet-CPP), or [C#](https://github.com/starlangsoftware/TurkishWordNet-CS) repository.
+You can also see [Cython](https://github.com/starlangsoftware/TurkishWordNet-Cy), [Java](https://github.com/starlangsoftware/TurkishWordNet), [C++](https://github.com/starlangsoftware/TurkishWordNet-CPP), or [C#](https://github.com/starlangsoftware/TurkishWordNet-CS) repository.
 
 ## Requirements
 
