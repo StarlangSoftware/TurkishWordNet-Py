@@ -16,10 +16,10 @@ class WordNetTest(unittest.TestCase):
         literalCount = 0
         for synSet in self.turkish.synSetList():
             literalCount += synSet.getSynonym().literalSize()
-        self.assertEquals(109049, literalCount)
+        self.assertEquals(109059, literalCount)
 
     def test_LiteralList(self):
-        self.assertEquals(81092, len(self.turkish.literalList()))
+        self.assertEquals(81070, len(self.turkish.literalList()))
 
     def test_GetSynSetWithId(self):
         self.assertIsNotNone(self.turkish.getSynSetWithId("TUR10-0000040"))
@@ -77,18 +77,18 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(38, self.turkish.numberOfSynSetsWithLiteral("atmak"))
         self.assertEquals(39, self.turkish.numberOfSynSetsWithLiteral("geçmek"))
         self.assertEquals(44, self.turkish.numberOfSynSetsWithLiteral("çekmek"))
-        self.assertEquals(51, self.turkish.numberOfSynSetsWithLiteral("tutmak"))
+        self.assertEquals(50, self.turkish.numberOfSynSetsWithLiteral("tutmak"))
         self.assertEquals(59, self.turkish.numberOfSynSetsWithLiteral("çıkmak"))
 
     def test_GetSynSetsWithPartOfSpeech(self):
-        self.assertEquals(44074, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.NOUN)))
-        self.assertEquals(17791, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.VERB)))
-        self.assertEquals(12416, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADJECTIVE)))
-        self.assertEquals(2550, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADVERB)))
-        self.assertEquals(342, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.INTERJECTION)))
+        self.assertEquals(44050, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.NOUN)))
+        self.assertEquals(17773, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.VERB)))
+        self.assertEquals(12410, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADJECTIVE)))
+        self.assertEquals(2548, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADVERB)))
+        self.assertEquals(339, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.INTERJECTION)))
         self.assertEquals(68, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PRONOUN)))
-        self.assertEquals(60, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.CONJUNCTION)))
-        self.assertEquals(29, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PREPOSITION)))
+        self.assertEquals(61, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.CONJUNCTION)))
+        self.assertEquals(30, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PREPOSITION)))
 
     def test_GetLiteralsWithPossibleModifiedLiteral(self):
         english = WordNet("../english_wordnet_version_31.xml", "../english_exception.xml")
@@ -127,7 +127,7 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(19, len(self.turkish.getInterlingual("ENG31-00149403-v")))
 
     def test_Size(self):
-        self.assertEquals(77330, self.turkish.size())
+        self.assertEquals(77279, self.turkish.size())
 
     def test_FindPathToRoot(self):
         self.assertEquals(1, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0814560"))))
@@ -143,8 +143,8 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(11, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0226380"))))
         self.assertEquals(12, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0490230"))))
         self.assertEquals(13, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-1198750"))))
-        self.assertEquals(14, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0412120"))))
-        self.assertEquals(15, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-1116690"))))
+        self.assertEquals(12, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0412120"))))
+        self.assertEquals(13, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-1116690"))))
         self.assertEquals(13, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0621870"))))
         self.assertEquals(14, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0822980"))))
         self.assertEquals(15, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0178450"))))
