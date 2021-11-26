@@ -10,7 +10,7 @@ class WordNetTest(unittest.TestCase):
     turkish: WordNet
 
     def setUp(self) -> None:
-        self.turkish = WordNet("../turkish_wordnet.xml")
+        self.turkish = WordNet()
 
     def test_SynSetList(self):
         literalCount = 0
@@ -91,7 +91,7 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(30, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PREPOSITION)))
 
     def test_GetLiteralsWithPossibleModifiedLiteral(self):
-        english = WordNet("../english_wordnet_version_31.xml", "../english_exception.xml")
+        english = WordNet("../WordNet/data/english_wordnet_version_31.xml", "../WordNet/data/english_exception.xml")
         self.assertTrue("go" in english.getLiteralsWithPossibleModifiedLiteral("went"))
         self.assertTrue("go" in english.getLiteralsWithPossibleModifiedLiteral("going"))
         self.assertTrue("go" in english.getLiteralsWithPossibleModifiedLiteral("gone"))

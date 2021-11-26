@@ -1,6 +1,8 @@
 import xml.etree.ElementTree
 from collections import OrderedDict
 
+import pkg_resources
+
 from Dictionary.ExceptionalWord import ExceptionalWord
 from Dictionary.Pos import Pos
 from MorphologicalAnalysis.FsmMorphologicalAnalyzer import FsmMorphologicalAnalyzer
@@ -31,7 +33,7 @@ class WordNet:
         """
         self.__exceptionList = {}
         if fileName is None:
-            fileName = "turkish_wordnet.xml"
+            fileName = pkg_resources.resource_filename(__name__, 'data/turkish_wordnet.xml')
         elif exceptionFileName is not None:
             self.readExceptionFile(exceptionFileName)
         self.__interlingualList = {}
