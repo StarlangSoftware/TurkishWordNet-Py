@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='NlpToolkit-WordNet',
-    version='1.0.19',
+    version='1.0.20',
     packages=['WordNet', 'WordNet.Similarity', 'WordNet.data'],
     package_data={'WordNet.data': ['*.xml']},
     url='https://github.com/StarlangSoftware/TurkishWordNet-Py',
