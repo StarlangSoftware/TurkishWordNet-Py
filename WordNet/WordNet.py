@@ -50,6 +50,8 @@ class WordNet:
                     currentSynSet.setDefinition(partNode.text)
                 elif partNode.tag == "EXAMPLE":
                     currentSynSet.setExample(partNode.text)
+                elif partNode.tag == "WIKI":
+                    currentSynSet.setWikiPage(partNode.text)
                 elif partNode.tag == "BCS":
                     currentSynSet.setBcs(int(partNode.text))
                 elif partNode.tag == "POS":

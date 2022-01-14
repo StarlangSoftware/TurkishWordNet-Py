@@ -19,6 +19,7 @@ class SynSet:
     __synonym: Synonym
     __relations: list
     __note: str
+    __wikiPage: str
     __bcs: int
 
     def __init__(self, _id: str):
@@ -36,6 +37,7 @@ class SynSet:
         self.__definition = []
         self.__pos = None
         self.__example = None
+        self.__wikiPage = None
 
     def __eq__(self, other) -> bool:
         """
@@ -274,6 +276,28 @@ class SynSet:
             String note
         """
         return self.__note
+
+    def setWikiPage(self, wikiPage: str):
+        """
+        Mutator for the wiki page.
+
+        PARAMETERS
+        ----------
+        wikiPage : str
+            String Wiki page to be set
+        """
+        self.__wikiPage = wikiPage
+
+    def getWikiPage(self) -> str:
+        """
+        Accessor for the wiki pages.
+
+        RETURNS
+        -------
+        str
+            String wiki page
+        """
+        return self.__wikiPage
 
     def addRelation(self, relation: Relation):
         """

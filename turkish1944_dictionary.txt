@@ -2855,7 +2855,7 @@ asyalı IS_OA
 asye IS_OA
 asyön CL_ISIM
 aş F5PR-NO-REF CL_ISIM CL_FIIL
-aşağı IS_KI CL_ISIM IS_ADJ
+aşağı IS_KI IS_ADJ CL_ISIM
 aşağıayrancı IS_OA
 aşağıla F_GUD F4PW CL_FIIL
 aşağılat CL_FIIL
@@ -3982,7 +3982,7 @@ balhan IS_OA
 balı IS_OA CL_ISIM
 balıbaş IS_OA
 balıbey IS_OA
-balık CL_ISIM
+balık IS_SD CL_ISIM
 balıkçı CL_ISIM
 balıkçıl CL_ISIM IS_ADJ
 balıkçılık IS_SD CL_ISIM
@@ -7507,6 +7507,7 @@ cyrus IS_OA
 çameli IS_OA
 çamer IS_OA
 çamgiller CL_ISIM
+çamlıca IS_OA
 çamlıdere IS_OA
 çamlıhemşin IS_OA
 çamlık IS_SD CL_ISIM
@@ -12234,7 +12235,6 @@ fen IS_ST CL_ISIM
 fena IS_ADJ
 fenâ CL_ISIM
 fenalaş CL_FIIL
-fenalaştır CL_FIIL
 fenalık IS_SD CL_ISIM
 fener IS_OA CL_ISIM
 fenerbahçe IS_OA
@@ -17912,7 +17912,7 @@ itboğan CL_ISIM
 itburnu IS_BILEŞ CL_ISIM
 itdirseği IS_BILEŞ IS_B_SD CL_ISIM
 itekle F_GUD F4PW CL_FIIL
-itele F4PW CL_FIIL
+itele F_GUD F4PW CL_FIIL
 iterbiyum CL_ISIM
 itfa CL_ISIM
 itfaiye CL_ISIM
@@ -18473,7 +18473,7 @@ kadışehri IS_OA
 kadife IS_OA CL_ISIM
 kadim IS_OA IS_ADJ
 kadime IS_OA
-kadir IS_OA IS_UD CL_ISIM
+kadir IS_OA IS_UD IS_UDD CL_ISIM
 kadîr IS_OA
 kadirbillah IS_OA
 kadire IS_OA
@@ -19512,7 +19512,7 @@ katibe IS_OA
 kâtibiadil CL_ISIM
 katie IS_OA
 katife IS_OA
-katil IS_UD IS_ADJ CL_ISIM
+katil IS_UD IS_UDD IS_ADJ CL_ISIM
 katimerini IS_OA
 katip IS_OA
 kâtip IS_SD CL_ISIM
@@ -23281,6 +23281,7 @@ maltız IS_OA CL_ISIM
 malul IS_ADJ
 malum IS_OA IS_ADJ IS_ADVERB CL_ISIM
 malûm CL_ISIM
+malûmat CL_ISIM
 mâlûmât CL_ISIM
 malûmatfüruş CL_ISIM
 malwina IS_OA
@@ -24299,7 +24300,7 @@ methal IS_UU CL_ISIM
 methar CL_ISIM
 methet F_SD F5PR CL_FIIL
 methiye IS_OA
-metin IS_OA IS_UD CL_ISIM IS_ADJ
+metin IS_OA IS_UD IS_UDD CL_ISIM IS_ADJ
 metîn IS_OA IS_ADJ
 metine IS_OA
 metiner IS_OA
@@ -26433,7 +26434,7 @@ necid IS_OA
 necih IS_OA
 necil IS_OA
 necile IS_OA
-necip IS_ADJ
+necip IS_OA IS_ADJ
 necipoğlu IS_OA
 neciy IS_OA
 neciyullah IS_OA

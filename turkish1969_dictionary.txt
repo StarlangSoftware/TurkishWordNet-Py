@@ -612,6 +612,7 @@ aglütinin CL_ISIM
 agnes IS_OA
 agnieszka IS_OA
 agnosi CL_ISIM
+agnostik IS_SD CL_ISIM
 agnostisizm CL_ISIM
 agop IS_OA
 agopyan IS_OA
@@ -1911,7 +1912,7 @@ amatem IS_OA
 amatör CL_ISIM
 amaya IS_OA
 amazon CL_ISIM
-ambalâj CL_ISIM
+ambalaj CL_ISIM
 ambar IS_OA CL_ISIM
 ambarcı CL_ISIM
 ambargo CL_ISIM
@@ -4060,7 +4061,7 @@ balhan IS_OA
 balı IS_OA
 balıbaş IS_OA
 balıbey IS_OA
-balık CL_ISIM
+balık IS_SD CL_ISIM
 balıkçı CL_ISIM
 balıkçıl CL_ISIM IS_ADJ
 balıkçılık IS_SD CL_ISIM
@@ -7744,6 +7745,7 @@ cyrus IS_OA
 çameli IS_OA
 çamer IS_OA
 çamgiller CL_ISIM
+çamlıca IS_OA
 çamlıdere IS_OA
 çamlıhemşin IS_OA
 çamlık IS_SD IS_ADJ CL_ISIM
@@ -12771,7 +12773,6 @@ femke IS_OA
 fen IS_ST CL_ISIM
 fena CL_ISIM IS_ADJ
 fenalaş CL_FIIL
-fenalaştır CL_FIIL
 fenalık IS_SD CL_ISIM
 fener IS_OA CL_ISIM
 fenerbahçe IS_OA
@@ -13028,6 +13029,7 @@ fışkın CL_ISIM
 fışkır F4PR CL_FIIL
 fışkırdak IS_SD CL_ISIM
 fışkırık IS_SD CL_ISIM
+fışkırma CL_ISIM
 fışkırtı CL_ISIM
 fışla F_GUD F4PW CL_FIIL
 fışna CL_FIIL
@@ -18616,7 +18618,7 @@ itap CL_ISIM
 itboğan CL_ISIM
 itburnu IS_BILEŞ CL_ISIM
 itdirseği IS_BILEŞ IS_B_SD CL_ISIM
-itele F4PW CL_FIIL
+itele F_GUD F4PW CL_FIIL
 iterbiyum CL_ISIM
 itfa CL_ISIM
 itfaiye CL_ISIM
@@ -19141,7 +19143,7 @@ kabza CL_ISIM
 kabzımal CL_ISIM
 kacper IS_OA
 kaç F2P1-NO-REF IS_ADJ CL_FIIL
-kaçak IS_SD CL_ISIM IS_ADJ
+kaçak IS_SD IS_ADJ CL_ISIM
 kaçakçı IS_ADJ
 kaçakçılık IS_SD CL_ISIM
 kaçamak IS_SD CL_ISIM
@@ -19205,7 +19207,7 @@ kadız CL_ISIM
 kadife IS_OA CL_ISIM
 kadim IS_OA IS_ADJ
 kadime IS_OA
-kadir IS_OA IS_UD CL_ISIM IS_ADJ
+kadir IS_OA IS_UD IS_UDD CL_ISIM IS_ADJ
 kadîr IS_OA
 kadirbilir IS_ADJ
 kadirbilirlik IS_SD CL_ISIM
@@ -20317,7 +20319,7 @@ katibe IS_OA
 kâtibiadil CL_ISIM
 katie IS_OA
 katife IS_OA
-katil IS_UD IS_ADJ CL_ISIM
+katil IS_UD IS_UDD IS_ADJ CL_ISIM
 katillik IS_SD CL_ISIM
 katimerini IS_OA
 katip IS_OA
@@ -23766,7 +23768,7 @@ lokavt CL_ISIM
 loke IS_OA
 lokma CL_ISIM
 lokmacı CL_ISIM
-lokmagöz IS_ADJ
+lokmagöz CL_ISIM
 lokman IS_OA
 lokmanruhu IS_BILEŞ CL_ISIM
 lokomobil CL_ISIM
@@ -24287,6 +24289,7 @@ maltız IS_OA CL_ISIM
 mâlûl IS_ADJ
 malum IS_OA
 malûm CL_ISIM IS_ADJ
+malumat CL_ISIM
 mâlûmât CL_ISIM
 malûmatfüruş CL_ISIM
 malûmatlı IS_ADJ
@@ -25280,7 +25283,7 @@ methiye IS_OA CL_ISIM
 metil CL_ISIM
 metilen CL_ISIM
 metilik IS_ADJ
-metin IS_OA IS_UD CL_ISIM
+metin IS_OA IS_UD IS_UDD CL_ISIM
 metîn IS_OA IS_ADJ
 metine IS_OA
 metiner IS_OA
@@ -27269,7 +27272,7 @@ necid IS_OA
 necih IS_OA
 necil IS_OA
 necile IS_OA
-necip IS_ADJ
+necip IS_OA IS_ADJ
 necipoğlu IS_OA
 neciy IS_OA
 neciyullah IS_OA
@@ -41392,7 +41395,7 @@ zağnos IS_OA
 zahid IS_OA
 zahide IS_OA
 zahir IS_OA CL_ISIM
-zâhir CL_ISIM IS_ADVERB IS_ADJ
+zâhir IS_ADVERB CL_ISIM IS_ADJ
 zahire IS_OA CL_ISIM
 zâhiren IS_ADVERB
 zahirî IS_ADJ
@@ -41415,7 +41418,7 @@ zain IS_OA
 zainab IS_OA
 zaire IS_OA
 zaireli IS_OA
-zait IS_OA IS_SD CL_ISIM IS_ADJ
+zait IS_OA IS_SD IS_ADJ CL_ISIM
 zaki IS_OA
 zakir IS_OA
 zakire IS_OA
