@@ -48,6 +48,11 @@ The structure of a sample synset is as follows:
 	</SYNSET>
 
 Each entry in the dictionary is enclosed by <SYNSET> and </SYNSET> tags. Synset members are represented as literals and their sense numbers. <ID> shows the unique identifier given to the synset. <POS> and <DEF> tags denote part of speech and definition, respectively. As for the <EXAMPLE> tag, it gives a sample sentence for the synset.
+
+Video Lectures
+============
+
+[<img src="https://github.com/StarlangSoftware/TurkishWordNet/blob/master/video1.jpg" width="50%">](https://youtu.be/RLVTegHva_k)
 	
 For Developers
 ============
