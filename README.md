@@ -52,7 +52,7 @@ Each entry in the dictionary is enclosed by <SYNSET> and </SYNSET> tags. Synset 
 Video Lectures
 ============
 
-[<img src="https://github.com/StarlangSoftware/TurkishWordNet/blob/master/video1.jpg" width="50%">](https://youtu.be/RLVTegHva_k)
+[<img src="https://github.com/StarlangSoftware/TurkishWordNet/blob/master/video1.jpg" width="50%">](https://youtu.be/RLVTegHva_k)[<img src="https://github.com/StarlangSoftware/TurkishWordNet/blob/master/video2.jpg" width="50%">](https://youtu.be/DFc_XEqJshU)
 	
 For Developers
 ============
