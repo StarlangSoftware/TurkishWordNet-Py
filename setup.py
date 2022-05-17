@@ -2,11 +2,11 @@ from setuptools import setup
 
 from pathlib import Path
 this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
+long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='NlpToolkit-WordNet',
-    version='1.0.20',
+    version='1.0.21',
     packages=['WordNet', 'WordNet.Similarity', 'WordNet.data'],
     package_data={'WordNet.data': ['*.xml']},
     url='https://github.com/StarlangSoftware/TurkishWordNet-Py',
