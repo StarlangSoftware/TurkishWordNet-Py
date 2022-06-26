@@ -110,7 +110,9 @@ Detailed Description
 
 ## WordNet
 
-To load the WordNet KeNet,
+To load WordNet KeNet, import and initialize it,
+	
+	from WordNet.WordNet import WordNet
 
 	a = WordNet()
 
