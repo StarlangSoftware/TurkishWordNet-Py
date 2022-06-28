@@ -3,6 +3,8 @@ import unittest
 from Dictionary.Pos import Pos
 
 from WordNet.WordNet import WordNet
+from WordNet.literal import Literal
+from WordNet.SemanticRelationType import SemanticRelationType
 
 
 class WordNetTest(unittest.TestCase):
@@ -157,6 +159,17 @@ class WordNetTest(unittest.TestCase):
         self.assertEquals(15, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0178450"))))
         self.assertEquals(16, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0600460"))))
         self.assertEquals(17, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0656390"))))
+
+    def test_literal(self):
+        expected = Literal("kuş", 1, "TUR10-0863380")
+        expected_relation_type = SemanticRelationType.DOMAIN_TOPIC
+
+        actual = self.turkish.getSynSetWithLiteral("kuş", 1).getSynonym().getLiteral(0)
+        self.assertEqual(expected, actual)
+        self.assertEqual("kuş 1", str(expected))
+        self.assertEqual(1, len(actual.relations))
+        self.assertEqual(expected_relation_type, actual.relations[0].getRelationType())
+        self.assertTrue(actual.contains_relation_type(expected_relation_type))
 
 
 if __name__ == '__main__':

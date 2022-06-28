@@ -10,7 +10,7 @@ from MorphologicalAnalysis.MetamorphicParse import MetamorphicParse
 from MorphologicalAnalysis.MorphologicalParse import MorphologicalParse
 
 from WordNet.InterlingualRelation import InterlingualRelation
-from WordNet.Literal import Literal
+from WordNet.literal import Literal
 from WordNet.SemanticRelation import SemanticRelation
 from WordNet.SemanticRelationType import SemanticRelationType
 from WordNet.SynSet import SynSet
@@ -102,10 +102,10 @@ class WordNet:
                                 typeNode = childNode[0]
                                 if len(childNode) > 1 and childNode[1].tag == "TO":
                                     toNode = childNode[1]
-                                    currentLiteral.addRelation(
+                                    currentLiteral.add_relation(
                                         SemanticRelation(childNode.text, typeNode.text, int(toNode.text)))
                                 else:
-                                    currentLiteral.addRelation(SemanticRelation(childNode.text, typeNode.text))
+                                    currentLiteral.add_relation(SemanticRelation(childNode.text, typeNode.text))
 
     def readExceptionFile(self, exceptionFileName: str):
         """
@@ -147,12 +147,12 @@ class WordNet:
         literal : Literal
             literal to be added
         """
-        if literal.getName() in self.__literalList:
-            literals = self.__literalList[literal.getName()]
+        if literal.name in self.__literalList:
+            literals = self.__literalList[literal.name]
         else:
             literals = []
         literals.append(literal)
-        self.__literalList[literal.getName()] = literals
+        self.__literalList[literal.name] = literals
 
     def synSetList(self) -> list:
         """
@@ -251,8 +251,8 @@ class WordNet:
         if literal in self.__literalList:
             literals = self.__literalList[literal]
             for current in literals:
-                if current.getSense() == sense:
-                    return self.getSynSetWithId(current.getSynSetId())
+                if current.sense == sense:
+                    return self.getSynSetWithId(current.syn_set_id)
         return None
 
     def numberOfSynSetsWithLiteral(self, literal: str) -> int:
@@ -327,7 +327,7 @@ class WordNet:
             part of speech tag to be searched in SynSets
         """
         for current in self.__literalList[literal]:
-            synSet = self.getSynSetWithId(current.getSynSetId)
+            synSet = self.getSynSetWithId(current.syn_set_id)
             if synSet is not None and synSet.getPos() == pos:
                 result.append(synSet)
 
@@ -348,7 +348,7 @@ class WordNet:
         result = []
         if literal in self.__literalList:
             for current in self.__literalList[literal]:
-                synSet = self.getSynSetWithId(current.getSynSetId())
+                synSet = self.getSynSetWithId(current.syn_set_id)
                 if synSet is not None:
                     result.append(synSet)
         return result
@@ -459,9 +459,9 @@ class WordNet:
         Loops through the SynSet list and adds the possible reverse relations.
         """
         for synSet in self.__synSetList.values():
-            for i in range(synSet.relationSize()):
-                if isinstance(synSet.getRelation(i), SemanticRelation):
-                    self.addReverseRelation(synSet, synSet.getRelation(i))
+            for relation in synSet.relations:
+                if isinstance(relation, SemanticRelation):
+                    self.addReverseRelation(synSet, relation)
 
     def constructLiterals(self, word: str, parse: MorphologicalParse, metaParse: MetamorphicParse,
                           fsm: FsmMorphologicalAnalyzer):
@@ -705,7 +705,7 @@ class WordNet:
             literal1 = synSet1.getSynonym().getLiteral(i)
             for j in range(i + 1, synSet2.getSynonym().literalSize()):
                 literal2 = synSet2.getSynonym().getLiteral(j)
-                if literal1.getName() == literal2.getName() and synSet1.getPos() is not None:
+                if literal1.name == literal2.name and synSet1.getPos() is not None:
                     return True
         return False
 
@@ -838,13 +838,13 @@ class WordNet:
         SynSet
             Parent SynSet
         """
-        for i in range(root.relationSize()):
-            r = root.getRelation(i)
+        for r in root.relations:
             if isinstance(r, SemanticRelation):
-                if r.getRelationType() == SemanticRelationType.HYPERNYM \
-                        or r.getRelationType() == SemanticRelationType.INSTANCE_HYPERNYM:
-                    root = self.getSynSetWithId(r.getName())
-                    return root
+                if r.getRelationType() in {
+                    SemanticRelationType.HYPERNYM,
+                    SemanticRelationType.INSTANCE_HYPERNYM
+                }:
+                    return self.getSynSetWithId(r.getName())
         return None
 
     def findPathToRoot(self, synSet: SynSet) -> list:

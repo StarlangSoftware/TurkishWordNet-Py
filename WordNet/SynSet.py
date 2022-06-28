@@ -3,7 +3,7 @@ from Dictionary.Pos import Pos
 
 from WordNet.InterlingualDependencyType import InterlingualDependencyType
 from WordNet.InterlingualRelation import InterlingualRelation
-from WordNet.Literal import Literal
+from WordNet.literal import Literal
 from WordNet.Relation import Relation
 from WordNet.SemanticRelation import SemanticRelation
 from WordNet.SemanticRelationType import SemanticRelationType
@@ -88,7 +88,7 @@ class SynSet:
         """
         self.__id = _id
         for i in range(self.__synonym.literalSize()):
-            self.__synonym.getLiteral(i).setSynSetId(_id)
+            self.__synonym.getLiteral(i).syn_set_id = _id
 
     def setDefinition(self, definition: str):
         """
@@ -147,7 +147,7 @@ class SynSet:
         str
             The first literal's name.
         """
-        return self.getSynonym().getLiteral(0).getName()
+        return self.getSynonym().getLiteral(0).name
 
     def getLongDefinition(self) -> str:
         """
@@ -326,7 +326,7 @@ class SynSet:
             self.__relations.remove(relationOrName)
         elif isinstance(relationOrName, str):
             for i in range(len(self.__relations)):
-                if self.__relations[i].getName() == relationOrName:
+                if self.__relations[i].name == relationOrName:
                     self.__relations.pop(i)
                     break
 
@@ -360,7 +360,7 @@ class SynSet:
             if isinstance(self.__relations[i], InterlingualRelation):
                 relation = self.__relations[i]
                 if relation.getType() == InterlingualDependencyType.SYNONYM:
-                    result.append(relation.getName())
+                    result.append(relation.name)
         return result
 
     def relationSize(self) -> int:
@@ -411,9 +411,9 @@ class SynSet:
             True if SynSets have same literals, False otherwise
         """
         for i in range(self.__synonym.literalSize()):
-            literal1 = self.__synonym.getLiteral(i).getName()
+            literal1 = self.__synonym.getLiteral(i).name
             for j in range(synSet.getSynonym().literalSize()):
-                literal2 = synSet.getSynonym().getLiteral(j).getName()
+                literal2 = synSet.getSynonym().getLiteral(j).name
                 if literal1 == literal2:
                     return True
         return False
@@ -472,7 +472,7 @@ class SynSet:
             self.setDefinition(self.getLongDefinition() + "|" + synSet.getLongDefinition())
         if synSet.relationSize() != 0:
             for i in range(0, synSet.relationSize()):
-                if not self.containsRelation(synSet.getRelation(i)) and synSet.getRelation(i).getName() != id:
+                if not self.containsRelation(synSet.getRelation(i)) and synSet.getRelation(i).name != id:
                     self.addRelation(synSet.getRelation(i))
         if self.__pos is None and synSet.getPos() is not None:
             self.setPos(synSet.getPos())
@@ -504,7 +504,7 @@ class SynSet:
         """
         outFile.write("<SYNSET>")
         outFile.write("<ID>" + self.__id + "</ID>")
-        self.__synonym.saveAsXml(outFile)
+        self.__synonym.save_as_xml(outFile)
         if self.__pos is not None:
             if self.__pos == Pos.NOUN:
                 outFile.write("<POS>n</POS>")

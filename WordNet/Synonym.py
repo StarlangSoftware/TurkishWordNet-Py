@@ -1,4 +1,4 @@
-from WordNet.Literal import Literal
+from WordNet.literal import Literal
 
 
 class Synonym:
@@ -53,7 +53,7 @@ class Synonym:
             return self.__literals[indexOrName]
         elif isinstance(indexOrName, str):
             for literal in self.__literals:
-                if literal.getName() == indexOrName:
+                if literal.name == indexOrName:
                     return literal
         return None
 
@@ -98,7 +98,7 @@ class Synonym:
             True if the list contains the specified element
         """
         for literal in self.__literals:
-            if literal.getName() == literalName:
+            if literal.name == literalName:
                 return True
         return False
 
@@ -139,5 +139,5 @@ class Synonym:
         """
         result = ""
         for literal in self.__literals:
-            result = result + literal.getName() + " "
+            result = result + literal.name + " "
         return result
