@@ -3,22 +3,22 @@ from WordNet.Relation import Relation
 
 
 class InterlingualRelation(Relation):
-    __dependencyType: InterlingualDependencyType
+    __dependency_type: InterlingualDependencyType
 
-    ilrDependency = ["Hypernym", "Near_antonym", "Holo_member", "Holo_part", "Holo_portion",
-                     "Usage_domain", "Category_domain", "Be_in_state", "Subevent", "Verb_group",
-                     "Similar_to", "Also_see", "Causes", "SYNONYM"]
+    interlingual_dependency = ["Hypernym", "Near_antonym", "Holo_member", "Holo_part", "Holo_portion",
+                               "Usage_domain", "Category_domain", "Be_in_state", "Subevent", "Verb_group",
+                               "Similar_to", "Also_see", "Causes", "SYNONYM"]
 
-    interlingualDependencyTags = [InterlingualDependencyType.HYPERNYM,
-                                  InterlingualDependencyType.NEAR_ANTONYM, InterlingualDependencyType.HOLO_MEMBER,
-                                  InterlingualDependencyType.HOLO_PART,
-                                  InterlingualDependencyType.HOLO_PORTION, InterlingualDependencyType.USAGE_DOMAIN,
-                                  InterlingualDependencyType.CATEGORY_DOMAIN,
-                                  InterlingualDependencyType.BE_IN_STATE, InterlingualDependencyType.SUBEVENT,
-                                  InterlingualDependencyType.VERB_GROUP,
-                                  InterlingualDependencyType.SIMILAR_TO, InterlingualDependencyType.ALSO_SEE,
-                                  InterlingualDependencyType.CAUSES,
-                                  InterlingualDependencyType.SYNONYM]
+    interlingual_dependency_tags = [InterlingualDependencyType.HYPERNYM,
+                                    InterlingualDependencyType.NEAR_ANTONYM, InterlingualDependencyType.HOLO_MEMBER,
+                                    InterlingualDependencyType.HOLO_PART,
+                                    InterlingualDependencyType.HOLO_PORTION, InterlingualDependencyType.USAGE_DOMAIN,
+                                    InterlingualDependencyType.CATEGORY_DOMAIN,
+                                    InterlingualDependencyType.BE_IN_STATE, InterlingualDependencyType.SUBEVENT,
+                                    InterlingualDependencyType.VERB_GROUP,
+                                    InterlingualDependencyType.SIMILAR_TO, InterlingualDependencyType.ALSO_SEE,
+                                    InterlingualDependencyType.CAUSES,
+                                    InterlingualDependencyType.SYNONYM]
 
     @staticmethod
     def getInterlingualDependencyTag(tag: str) -> InterlingualDependencyType:
@@ -36,12 +36,14 @@ class InterlingualRelation(Relation):
         InterlingualDependencyType
             Interlingual dependency type according to specified tag
         """
-        for i in range(len(InterlingualRelation.ilrDependency)):
-            if tag == InterlingualRelation.ilrDependency[i]:
-                return InterlingualRelation.interlingualDependencyTags[i]
+        for i in range(len(InterlingualRelation.interlingual_dependency)):
+            if tag == InterlingualRelation.interlingual_dependency[i]:
+                return InterlingualRelation.interlingual_dependency_tags[i]
         return None
 
-    def __init__(self, name: str, dependencyType: str):
+    def __init__(self,
+                 name: str,
+                 dependencyType: str):
         """
         InterlingualRelation method sets its relation with the specified String name, then gets the
         InterlingualDependencyType according to specified String dependencyType.
@@ -54,7 +56,7 @@ class InterlingualRelation(Relation):
             interlingual dependency type
         """
         super().__init__(name)
-        self.__dependencyType = InterlingualRelation.getInterlingualDependencyTag(dependencyType)
+        self.__dependency_type = InterlingualRelation.getInterlingualDependencyTag(dependencyType)
 
     def getType(self) -> InterlingualDependencyType:
         """
@@ -65,7 +67,7 @@ class InterlingualRelation(Relation):
         InterlingualDependencyType
             Interlingual dependency type
         """
-        return self.__dependencyType
+        return self.__dependency_type
 
     def getTypeAsString(self) -> str:
         """
@@ -76,7 +78,7 @@ class InterlingualRelation(Relation):
         str
             String interlingual dependency type
         """
-        return self.__dependencyType.name
+        return self.__dependency_type.name
 
     def __str__(self) -> str:
         """

@@ -141,3 +141,6 @@ class Synonym:
         for literal in self.__literals:
             result = result + literal.getName() + " "
         return result
+
+    def __repr__(self):
+        return self.__str__()
