@@ -101,6 +101,8 @@ class WordNet:
                                 current_literal = Literal(literal_node.text, int(child_node.text), current_syn_set.getId())
                                 current_syn_set.addLiteral(current_literal)
                                 self.addLiteralToLiteralList(current_literal)
+                            elif child_node.tag == "ORIGIN":
+                                current_literal.setOrigin(child_node.text)
                             elif child_node.tag == "SR":
                                 type_node = child_node[0]
                                 if len(child_node) > 1 and child_node[1].tag == "TO":
