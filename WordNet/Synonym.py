@@ -35,6 +35,24 @@ class Synonym:
             self.__literals.remove(literal)
             self.__literals.insert(0, literal)
 
+    def getUniqueLiterals(self) -> list:
+        literal_groups = []
+        group_no = -1
+        synonym = Synonym()
+        for literal in self.__literals:
+            if literal.getGroupNo() != group_no:
+                if group_no != -1:
+                    literal_groups.append(synonym)
+                group_no = literal.getGroupNo()
+                synonym = Synonym()
+            else:
+                if group_no == 0:
+                    literal_groups.append(synonym)
+                    synonym = Synonym()
+            synonym.addLiteral(literal)
+        literal_groups.append(synonym)
+        return literal_groups
+
     def getLiteral(self, indexOrName) -> Literal:
         """
         Returns the element at the specified position in literals list.

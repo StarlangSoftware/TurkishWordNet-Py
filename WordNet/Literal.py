@@ -11,6 +11,7 @@ class Literal:
     syn_set_id: str
     origin: str
     relations: list
+    group_no: int
 
     def __init__(self,
                  name: str,
@@ -33,6 +34,7 @@ class Literal:
         self.syn_set_id = synSetId
         self.relations = []
         self.origin = None
+        self.group_no = 0
 
     def __eq__(self, other) -> bool:
         """
@@ -104,6 +106,28 @@ class Literal:
             Origin of the literal to set
         """
         self.origin = origin
+
+    def getGroupNo(self) -> int:
+        """
+        Accessor method to return the group no of the literal.
+
+        RETURNS
+        -------
+        int
+            Group no of the literal
+        """
+        return self.group_no
+
+    def setGroupNo(self, group_no: int):
+        """
+        Mutator method to set the origin with specified origin.
+
+        PARAMETERS
+        ----------
+        group_no : int
+            Group no of the literal to set
+        """
+        self.group_no = group_no
 
     def setSense(self, sense: int):
         """
@@ -238,6 +262,8 @@ class Literal:
             outfile.write("<LITERAL>" + self.name + "<SENSE>" + str(self.sense) + "</SENSE>")
         if self.origin is not None:
             outfile.write("<ORIGIN>" + self.origin + "</ORIGIN>")
+        if self.group_no != 0:
+            outfile.write("<GROUP>" + self.group_no.__str__() + "</GROUP>")
         for r in self.relations:
             if isinstance(r, InterlingualRelation):
                 outfile.write("<ILR>" + r.getName() + "<TYPE>" + r.getTypeAsString() + "</TYPE></ILR>")

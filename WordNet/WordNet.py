@@ -103,6 +103,8 @@ class WordNet:
                                 self.addLiteralToLiteralList(current_literal)
                             elif child_node.tag == "ORIGIN":
                                 current_literal.setOrigin(child_node.text)
+                            elif child_node.tag == "GROUP":
+                                current_literal.setGroupNo(int(child_node.text))
                             elif child_node.tag == "SR":
                                 type_node = child_node[0]
                                 if len(child_node) > 1 and child_node[1].tag == "TO":
