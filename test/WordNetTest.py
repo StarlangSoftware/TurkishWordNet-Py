@@ -17,7 +17,7 @@ class WordNetTest(unittest.TestCase):
         literalCount = 0
         for synSet in self.turkish.synSetList():
             literalCount += synSet.getSynonym().literalSize()
-        self.assertEqual(110258, literalCount)
+        self.assertEqual(110259, literalCount)
 
     def test_WikiPage(self):
         wikiPageCount = 0
@@ -55,7 +55,7 @@ class WordNetTest(unittest.TestCase):
         self.assertEqual(3, groups.count(4))
 
     def test_LiteralList(self):
-        self.assertEqual(82275, len(self.turkish.literalList()))
+        self.assertEqual(82276, len(self.turkish.literalList()))
 
     def test_GetSynSetWithId(self):
         self.assertIsNotNone(self.turkish.getSynSetWithId("TUR10-0000040"))
@@ -117,12 +117,12 @@ class WordNetTest(unittest.TestCase):
         self.assertEqual(59, self.turkish.numberOfSynSetsWithLiteral("çıkmak"))
 
     def test_GetSynSetsWithPartOfSpeech(self):
-        self.assertEqual(43884, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.NOUN)))
-        self.assertEqual(17772, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.VERB)))
-        self.assertEqual(12410, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADJECTIVE)))
+        self.assertEqual(43882, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.NOUN)))
+        self.assertEqual(17773, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.VERB)))
+        self.assertEqual(12406, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADJECTIVE)))
         self.assertEqual(2549, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.ADVERB)))
         self.assertEqual(1552, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.INTERJECTION)))
-        self.assertEqual(68, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PRONOUN)))
+        self.assertEqual(74, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PRONOUN)))
         self.assertEqual(61, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.CONJUNCTION)))
         self.assertEqual(30, len(self.turkish.getSynSetsWithPartOfSpeech(Pos.PREPOSITION)))
 
@@ -163,7 +163,7 @@ class WordNetTest(unittest.TestCase):
         self.assertEqual(19, len(self.turkish.getInterlingual("ENG31-00149403-v")))
 
     def test_Size(self):
-        self.assertEqual(78326, self.turkish.size())
+        self.assertEqual(78327, self.turkish.size())
 
     def test_FindPathToRoot(self):
         self.assertEqual(1, len(self.turkish.findPathToRoot(self.turkish.getSynSetWithId("TUR10-0814560"))))
